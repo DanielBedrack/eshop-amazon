@@ -3,6 +3,19 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'GET_REQUEST':
+      return { ...state, loading: true };
+    case 'GET_SUCCSESS':
+      return { ...state, products: action.payload, loading: false };
+    case 'GET_FAIL':
+      return { ...state, loading: false, error: action.payload };
+    default:
+      return state;
+  }
+}
+
 const HomePage = () => {
   const [products, setProducts] = useState([])
 

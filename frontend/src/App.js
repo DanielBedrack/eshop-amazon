@@ -10,8 +10,8 @@ function App() {
         <Link to="/">EShop</Link>
       </header>
       <Routes>
-        <Route path="/product/:token" element={<ProductPage />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/product/:token" element={<ProductPage />} />        
       </Routes>
     </BrowserRouter>
   );

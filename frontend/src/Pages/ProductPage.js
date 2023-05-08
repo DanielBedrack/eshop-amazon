@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-function ProductPage() {
+const ProductPage = () => {
     const params = useParams();
     const {token} = params;
 
