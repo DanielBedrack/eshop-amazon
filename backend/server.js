@@ -6,7 +6,7 @@ import seedRouter from './Routes/seedRoutes.js';
 import data from './data.js';
 
 dotenv.config();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 app.use(cors());
@@ -16,7 +16,6 @@ app.use('/api/v1/seed', seedRouter)
 app.get('/api/v1/products', (req, res) => {
   res.send(data.products);
 });
-
 
 mongoose
   .connect(process.env.MONGO_URI)

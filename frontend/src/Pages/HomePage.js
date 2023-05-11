@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import { useEffect, useReducer } from 'react';
 import axios from 'axios';
-import logger from 'use-reducer-logger';
+import { Row } from 'react-bootstrap'
+import Product from '../Components/product';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -18,7 +18,7 @@ const reducer = (state, action) => {
 
 const HomePage = () => {
   
-  const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
+  const [{ loading, error, products }, dispatch] = useReducer((reducer), {
     loading: true,
     error: '',
     products: [],
@@ -47,20 +47,11 @@ const HomePage = () => {
           ) : error ? (
             <p>{error}</p>
           ) : (
-            products.map((product) => (
-              <div className="product" key={product.token}>
-                <Link to={`/product/${product.token}`}>
-                  <img src={product.image} alt={product.name}></img>
-                </Link>
-                <div className="product-desk">
-                  <p>{product.name}</p>
-                  <strong>
-                    <p>{product.price}</p>
-                  </strong>
-                  <button>Add To Cart</button>
-                </div>
-              </div>
-            ))
+            <Row>
+              {products.map((product) => (
+                <Product product={ product } />
+              ))}
+            </Row>
           )}
         </div>
       </main>

@@ -10,6 +10,4 @@ seedRouter.get('/', async (req, res) => {
     res.send({createdProducts})
 });
 
-
-
 export default seedRouter;

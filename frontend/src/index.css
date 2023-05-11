@@ -7,17 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-header {
-  background-color: #404040;
-  padding: 1rem;
-}
-
-header a {
-  color: #ffffff;
-  font-weight: bold;
-  text-decoration: none;
-}
-
 .products {
   display: flex;
   flex-wrap: wrap;
@@ -35,9 +24,13 @@ header a {
 }
 
 main {
-  padding: 1rem;
+  flex: 1;
 }
 
 .product-desk {
   padding: 1rem;
+}
+
+.side-fullpage {
+  min-height: 100vh;
 }
