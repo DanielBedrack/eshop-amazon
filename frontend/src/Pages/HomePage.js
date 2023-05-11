@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-//import data from '../data';
 import { useEffect, useReducer } from 'react';
 import axios from 'axios';
 import logger from 'use-reducer-logger';
@@ -18,12 +17,12 @@ const reducer = (state, action) => {
 };
 
 const HomePage = () => {
+  
   const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
     loading: true,
     error: '',
     products: [],
   });
-  //const [products, setProducts] = useState([]);
 
   useEffect(() => {
     dispatch({ type: 'GET_REQUEST' });
