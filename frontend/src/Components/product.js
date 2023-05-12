@@ -1,22 +1,28 @@
 import { Link } from 'react-router-dom';
-import { Col } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Rating from './Rating';
 
-const Product = ({ product }) => {
+const Product = (props) => {
+  const { product } = props;
   return (
-    <Col lg={3} md={4} sm={6} className="mb-3">
-      <div className="product" key={product.token}>
+    <Card className='product-card'>
+      <Link to={`/product/${product.token}`}>
+        <img
+          className="card-img-top"
+          src={product.image}
+          alt={product.name}
+        ></img>
+      </Link>
+      <Card.Body>
         <Link to={`/product/${product.token}`}>
-          <img src={product.image} alt={product.name}></img>
+          <Card.Title>{product.name}</Card.Title>
         </Link>
-        <div className="product-desk">
-          <p>{product.name}</p>
-          <strong>
-            <p>{product.price}</p>
-          </strong>
-          <button>Add To Cart</button>
-        </div>
-      </div>
-    </Col>
+        <Rating rating={product.rating} reviews={product.numReviews} />
+        <Card.Text>{product.price}</Card.Text>
+        <Button className='btn btn-primary'>Add To Cart</Button>
+      </Card.Body>
+    </Card>
   );
 };
 

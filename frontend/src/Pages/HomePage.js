@@ -1,6 +1,7 @@
 import { useEffect, useReducer } from 'react';
 import axios from 'axios';
-import { Row } from 'react-bootstrap'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import Product from '../Components/product';
 
 const reducer = (state, action) => {
@@ -49,7 +50,9 @@ const HomePage = () => {
           ) : (
             <Row>
               {products.map((product) => (
-                <Product product={ product } />
+                <Col key={product.token} lg={3} md={4} sm={6} className="mb-3">
+                  <Product product={product} />
+                </Col>
               ))}
             </Row>
           )}

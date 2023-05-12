@@ -34,3 +34,31 @@ main {
 .side-fullpage {
   min-height: 100vh;
 }
+.rating-stars span{
+  color: #ffc000;
+}
+
+.btn-primary,
+.btn-outline-primary {
+  background-color: #f0c040;
+  color: #000000;
+  border-width: 0;
+}
+
+.btn-primary:hover, 
+.btn-primary:focus,
+.btn-outline-primary:hover
+.btn-outline-primary:focus {
+  background-color: #d3a62c;
+}
+
+.product-card {
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  box-shadow: none;
+  transform: scale(1);
+}
+
+.product-card:hover {
+  box-shadow: 10px 10px 10px #888888;
+  transform: scale(1.02);
+}
