@@ -1,12 +1,18 @@
 import axios from 'axios';
-import React, { useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import Col from 'react-bootstrap/esm/Col';
 import Row from 'react-bootstrap/esm/Row';
 import ListGroup from 'react-bootstrap/esm/ListGroup';
 import Card from 'react-bootstrap/esm/Card';
 import Button from 'react-bootstrap/esm/Button';
+import Badge from 'react-bootstrap/esm/Badge';
 import { useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
+import { Helmet } from 'react-helmet-async';
+import Loading from '../Components/Loading';
+import MessageBox from '../Components/MessageBox';
+import { getError } from '../YouKills';
+import { Store } from '../Context/Store';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -38,19 +44,25 @@ const ProductPage = () => {
         const res = await axios.get(`/api/v1/product/token/${token}`);
         dispatch({ type: 'GET_SUCCSESS', payload: res.data });
       } catch (error) {
-        dispatch({ type: 'GET_FAIL', payload: error.message });
+        dispatch({ type: 'GET_FAIL', payload: getError(error) });
       }
     };
     getProduct();
   }, [token]);
 
+  const {state, dispatch: contextDispatch} = useContext(Store);
+
+  const addToCartHandler = () => {
+    contextDispatch({type: 'Add_TO_CART', payload: {...product, quantity: 1 }})
+  }
+
   return (
     <div>
       {loading ? (
-        <p>Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
+          <Loading />
+        ) : error ? (
+          <MessageBox variant='danger'>{error}</MessageBox>
+        ) : (
         <div>
           <Row>
             <Col md={6}>
@@ -63,9 +75,9 @@ const ProductPage = () => {
             <Col md={3}>
               <ListGroup variant="flush">
                 <ListGroup.Item>
-                  {/* <Helmet>
+                  <Helmet>
                     <title>{product.name}</title>
-                  </Helmet> */}
+                  </Helmet>
                   <h1>{product.name}</h1>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -102,8 +114,10 @@ const ProductPage = () => {
                     {product.countInStock > 0 && (
                       <ListGroup.Item>
                         <div className="d-grid">
-                          <Button onClick={addToCartHandler} variant="primary">
-                            Add to Cart
+                          <Button 
+                            onClick={addToCartHandler} 
+                            variant="primary"
+                            >Add to Cart
                           </Button>
                         </div>
                       </ListGroup.Item>

@@ -7,7 +7,7 @@ const data = {
       price: 12.99,
       token: 'Product A Token',
       brand: 'Teva',
-      countInStock: 6,
+      countInStock: 0,
       rating: 2.5,
       numReviews: 100,
       image: './images/1st.jpg',

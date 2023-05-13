@@ -6,14 +6,16 @@ import Rating from './Rating';
 const Product = (props) => {
   const { product } = props;
   return (
-    <Card className='product-card'>
-      <Link to={`/product/${product.token}`}>
-        <img
-          className="card-img-top"
-          src={product.image}
-          alt={product.name}
-        ></img>
-      </Link>
+    <Card key={product.token} className='product-card'>
+      <div className='card-image-wrapper'>
+        <Link to={`/product/${product.token}`}>
+          <img
+            className="card-img-top card-image"
+            src={product.image}
+            alt={product.name}
+          ></img>
+        </Link>
+      </div>      
       <Card.Body>
         <Link to={`/product/${product.token}`}>
           <Card.Title>{product.name}</Card.Title>

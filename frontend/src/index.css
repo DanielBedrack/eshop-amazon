@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -34,7 +34,7 @@ main {
 .side-fullpage {
   min-height: 100vh;
 }
-.rating-stars span{
+.rating-stars span {
   color: #ffc000;
 }
 
@@ -45,10 +45,9 @@ main {
   border-width: 0;
 }
 
-.btn-primary:hover, 
+.btn-primary:hover,
 .btn-primary:focus,
-.btn-outline-primary:hover
-.btn-outline-primary:focus {
+.btn-outline-primary:hover .btn-outline-primary:focus {
   background-color: #d3a62c;
 }
 
@@ -61,4 +60,31 @@ main {
 .product-card:hover {
   box-shadow: 10px 10px 10px #888888;
   transform: scale(1.02);
+}
+
+.card-image-wrapper {
+  width: 100%;
+  height: 10rem;
+}
+
+.card-image {
+  max-width: auto;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.desc {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.imp-prod {
+  width: 100%;
+}
+
+.cart-color {
+  color: #fff;
 }
