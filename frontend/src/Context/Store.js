@@ -22,6 +22,7 @@ const reducer = (state, action) => {
 
       // If new item already exist in cart,it replace an old item to new with new QUANTITY ,else adding new item in cart.cartItems
       const cartItems = existingItem
+      
         ? state.cart.cartItems.map((item) =>
             item.id === existingItem.id ? newItem : item
           )

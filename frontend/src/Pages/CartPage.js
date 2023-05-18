@@ -9,6 +9,7 @@ import axios from 'axios';
 
 const CartPage = () => {
   const { state, dispatch: cxtDispatch } = useContext(Store);
+
   const navigate = useNavigate();
   const {
     cart: { cartItems },
@@ -16,17 +17,11 @@ const CartPage = () => {
 
   const updateCartHandler = async (item, quantity) => {
     const { data } = await axios.get(`/api/v1/products/${item.id}`);
-        console.log('before first if');
 
-    if (quantity === 0) {
-        removeCartHandler(item)
-        return
-    }
     if (data.countInStock < quantity) {
       window.alert('Sorry. Product is out of stock');
       return;
     }
-    console.log("before dispatch")
     cxtDispatch({ type: 'ADD_TO_CART', payload: { ...item, quantity } });
   };
 
@@ -39,14 +34,15 @@ const CartPage = () => {
   const checkoutHandler = () => {
     navigate('/signin?redirect=/shipping');
   };
-  const validChecker = async (item, quantity) => {
-    const { data } = await axios.get(`/api/v1/products/${item.id}`);
+//   const validChecker = async (item, quantity) => {
+//     const { data } = await axios.get(`/api/v1/products/${item.id}`);
 
-    if (data.countInStock < quantity) {
-      return true;
-    }
-    return false;
-  };
+//     if (data.countInStock < quantity) {
+//         console.log(quantity, data.countInStock);
+//       return false;
+//     }
+//     return true;
+//   };
 
   return (
     <div>
@@ -87,7 +83,7 @@ const CartPage = () => {
                       <span>{item.quantity}</span>
                       <Button
                         variant="light"
-                        //disabled={() => validChecker(item, item.quantity)}
+                        disabled={item.quantity === item.countInStock}
                         onClick={() =>
                           updateCartHandler(item, item.quantity + 1)
                         }
