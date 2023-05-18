@@ -87,7 +87,7 @@ const CartPage = () => {
                       <span>{item.quantity}</span>
                       <Button
                         variant="light"
-                        disabled={() => validChecker(item, item.quantity)}
+                        //disabled={() => validChecker(item, item.quantity)}
                         onClick={() =>
                           updateCartHandler(item, item.quantity + 1)
                         }
@@ -99,7 +99,6 @@ const CartPage = () => {
                     <Col md={2}>
                       <Button
                         variant="light"
-                        disabled={item.quantity === 0}
                         onClick={() => removeCartHandler(item)}
                       >
                         <i className="fas fa-trash"></i>
