@@ -6,20 +6,21 @@ import ListGroup from 'react-bootstrap/esm/ListGroup';
 import Card from 'react-bootstrap/esm/Card';
 import Button from 'react-bootstrap/esm/Button';
 import Badge from 'react-bootstrap/esm/Badge';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
 import { Helmet } from 'react-helmet-async';
 import Loading from '../Components/Loading';
 import MessageBox from '../Components/MessageBox';
-import { getError } from '../YouKills';
+import { getError } from '../Utils';
 import { Store } from '../Context/Store';
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'GET_REQUEST':
       return { ...state, loading: true };
-    case 'GET_SUCCSESS':
       console.log(state);
+    case 'GET_SUCCESS':
+      
       return { ...state, product: action.payload, loading: false };
     case 'GET_FAIL':
       return { ...state, loading: false, error: action.payload };
@@ -29,8 +30,11 @@ const reducer = (state, action) => {
 };
 
 const ProductPage = () => {
+  const navigate = useNavigate();
   const params = useParams();
+
   const { token } = params;
+
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
     loading: true,
     error: '',
@@ -42,51 +46,68 @@ const ProductPage = () => {
       dispatch({ type: 'GET_REQUEST' });
       try {
         const res = await axios.get(`/api/v1/product/token/${token}`);
-        dispatch({ type: 'GET_SUCCSESS', payload: res.data });
+
+        dispatch({ type: 'GET_SUCCESS', payload: res.data });
       } catch (error) {
         dispatch({ type: 'GET_FAIL', payload: getError(error) });
       }
     };
+    
     getProduct();
   }, [token]);
 
-  const {state, dispatch: contextDispatch} = useContext(Store);
+  // Calling reducer from Store context to add elemnts to cart
+  const { state, dispatch: cxtDispatch } = useContext(Store)
+  const { cart } = state
 
-  const addToCartHandler = () => {
-    contextDispatch({type: 'Add_TO_CART', payload: {...product, quantity: 1 }})
-  }
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x.id === product.id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    //const { data } = await axios.get(`/api/v1/products/${product.id}`);
+    if (product.countInStock < quantity) {
+      window.alert('Sorry. Product is out of stock');
+      return;
+    }
+    cxtDispatch({
+      type: 'ADD_TO_CART',
+      payload: { ...product, quantity }
+    });
+    navigate('/cart');
+  };
 
   return (
     <div>
       {loading ? (
-          <Loading />
-        ) : error ? (
-          <MessageBox variant='danger'>{error}</MessageBox>
-        ) : (
-        <div>
+        <Loading />
+      ) : error ? (
+        <MessageBox variant="danger">{error}</MessageBox>
+      ) : (
           <Row>
             <Col md={6}>
               <img
                 className="img-large"
                 src={product.image}
-                alt={product.name}
+                alt={product.title}
               />
             </Col>
             <Col md={3}>
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Helmet>
-                    <title>{product.name}</title>
+                    <title>{product.title}</title>
                   </Helmet>
-                  <h1>{product.name}</h1>
+                  <h1>{product.title}</h1>
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Rating
-                    rating={product.rating}
-                    numReviews={product.numReviews}
+                    rating={product.rating.rate}
+                    numReviews={product.rating.count}
                   ></Rating>
                 </ListGroup.Item>
                 <ListGroup.Item>Pirce : ${product.price}</ListGroup.Item>
+                <ListGroup.Item>
+                  Description : <p>{product.description}</p>
+                </ListGroup.Item>
               </ListGroup>
             </Col>
             <Col md={3}>
@@ -114,10 +135,8 @@ const ProductPage = () => {
                     {product.countInStock > 0 && (
                       <ListGroup.Item>
                         <div className="d-grid">
-                          <Button 
-                            onClick={addToCartHandler} 
-                            variant="primary"
-                            >Add to Cart
+                          <Button onClick={() => addToCartHandler(product)} variant="primary">
+                            Add to Cart
                           </Button>
                         </div>
                       </ListGroup.Item>
@@ -127,7 +146,6 @@ const ProductPage = () => {
               </Card>
             </Col>
           </Row>
-        </div>
       )}
     </div>
   );

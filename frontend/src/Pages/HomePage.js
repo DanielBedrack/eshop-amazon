@@ -6,12 +6,13 @@ import Product from '../Components/product';
 import { Helmet } from 'react-helmet-async';
 import Loading from '../Components/Loading';
 import MessageBox from '../Components/MessageBox';
+import { getError } from '../Utils';
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'GET_REQUEST':
       return { ...state, loading: true };
-    case 'GET_SUCCSESS':
+    case 'GET_SUCCESS':
       return { ...state, products: action.payload, loading: false };
     case 'GET_FAIL':
       return { ...state, loading: false, error: action.payload };
@@ -28,17 +29,20 @@ const HomePage = () => {
   });
 
   useEffect(() => {
-    dispatch({ type: 'GET_REQUEST' });
-    try {
-      const getProducts = async () => {
-        const res = await axios.get('/api/v1/products');
-        dispatch({ type: 'GET_SUCCSESS', payload: res.data });
-      };
-      getProducts();
-    } catch (error) {
-      dispatch({ type: 'GET_FAIL', payload: error.message });
+    const getProducts = async () => {
+      try {
+        dispatch({ type: 'GET_REQUEST' })
+        const res = await axios.get(`/api/v1/products`) //try catch
+        dispatch({ type: 'GET_SUCCESS', payload: res.data })
+      } catch (err) {
+        dispatch({ type: 'GET_FAIL', payload: getError(err) })
+      }
+
+      //setProducts(res.data);
     }
-  }, []);
+
+    getProducts()
+  }, [])
 
   return (
     <div>
@@ -46,14 +50,14 @@ const HomePage = () => {
         <title>eShop</title>
       </Helmet>
       <h1>Products</h1>
-      <div className="products">
+      <div className="main-inner">
         {loading ? (
           <Loading />
         ) : error ? (
           <MessageBox variant='danger'>{error}</MessageBox>
         ) : (
           <Row>
-            {products.map((product) => (
+            {products.map(product => (
               <Col key={product.token} lg={3} md={4} sm={6} className="mb-3">
                 <Product product={product} />
               </Col>

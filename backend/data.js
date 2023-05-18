@@ -1,6 +1,7 @@
 const data = {
   products: [
     {
+      id: 1,
       title: 'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
       price: 109.95,
       description:
@@ -16,6 +17,7 @@ const data = {
       },
     },
     {
+      id: 2,
       title: 'Mens Casual Premium Slim Fit T-Shirts',
       price: 22.3,
       description:
@@ -32,6 +34,7 @@ const data = {
       },
     },
     {
+      id: 3,
       title: 'Mens Cotton Jacket',
       price: 55.99,
       description:
@@ -47,6 +50,7 @@ const data = {
       },
     },
     {
+      id: 4,
       title: 'Mens Casual Slim Fit',
       price: 15.99,
       description:
@@ -62,6 +66,7 @@ const data = {
       },
     },
     {
+      id: 5,
       title:
         "John Hardy Women's Legends Naga Gold & Silver Dragon Station Chain Bracelet",
       price: 695,
@@ -79,6 +84,7 @@ const data = {
       },
     },
     {
+      id: 6,
       title: 'Solid Gold Petite Micropave',
       price: 168,
       description:
@@ -94,6 +100,7 @@ const data = {
       },
     },
     {
+      id: 7,
       title: 'White Gold Plated Princess',
       price: 9.99,
       description:
@@ -109,6 +116,7 @@ const data = {
       },
     },
     {
+      id: 8,
       title: 'Pierced Owl Rose Gold Plated Stainless Steel Double',
       price: 10.99,
       description:
@@ -124,6 +132,7 @@ const data = {
       },
     },
     {
+      id: 9,
       title: 'WD 2TB Elements Portable External Hard Drive - USB 3.0',
       price: 64,
       description:
@@ -139,6 +148,7 @@ const data = {
       },
     },
     {
+      id: 10,
       title: 'SanDisk SSD PLUS 1TB Internal SSD - SATA III 6 Gb/s',
       price: 109,
       description:
@@ -154,6 +164,7 @@ const data = {
       },
     },
     {
+      id: 11,
       title:
         'Silicon Power 256GB SSD 3D NAND A55 SLC Cache Performance Boost SATA III 2.5',
       price: 109,
@@ -171,6 +182,7 @@ const data = {
       },
     },
     {
+      id: 12,
       title:
         'WD 4TB Gaming Drive Works with Playstation 4 Portable External Hard Drive',
       price: 114,
@@ -188,6 +200,7 @@ const data = {
       },
     },
     {
+      id: 13,
       title: 'Acer SB220Q bi 21.5 inches Full HD (1920 x 1080) IPS Ultra-Thin',
       price: 599,
       description:
@@ -203,6 +216,7 @@ const data = {
       },
     },
     {
+      id: 14,
       title:
         'Samstongue 49-Inch CHG90 144Hz Curved Gaming Monitor (LC49HG90DMNXZA) – Super Ultrawide Screen QLED',
       price: 999.99,
@@ -220,6 +234,7 @@ const data = {
       },
     },
     {
+      id: 15,
       title: "BIYLACLESEN Women's 3-in-1 Snowboard Jacket Winter Coats",
       price: 56.99,
       description:
@@ -235,6 +250,7 @@ const data = {
       },
     },
     {
+      id: 16,
       title:
         "Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket",
       price: 29.95,
@@ -252,6 +268,7 @@ const data = {
       },
     },
     {
+      id: 17,
       title: 'Rain Jacket Women Windbreaker Striped Climbing Raincoats',
       price: 39.99,
       description:
@@ -267,6 +284,7 @@ const data = {
       },
     },
     {
+      id: 18,
       title: "MBJ Women's Solid Short Sleeve Boat Neck V",
       price: 9.85,
       description:
@@ -282,6 +300,7 @@ const data = {
       },
     },
     {
+      id: 19,
       title: "Opna Women's Short Sleeve Moisture",
       price: 7.95,
       description:
@@ -297,6 +316,7 @@ const data = {
       },
     },
     {
+      id: 20,
       title: 'DANVOUY Womens T Shirt Casual Cotton Short',
       price: 12.99,
       description:
@@ -312,6 +332,7 @@ const data = {
       },
     },
     {
+      id: 21,
       title: "Mauricio's Blue Jeans",
       price: 7.99,
       description: 'Blue as the ice can see! Cheap, with good quality.',
@@ -327,6 +348,7 @@ const data = {
       },
     },
     {
+      id: 22,
       title: 'ALEJANDRO Black Jeans',
       price: 11.33,
       description: 'You have never worn this black jeans before!',
@@ -342,6 +364,7 @@ const data = {
       },
     },
     {
+      id: 23,
       title: 'Camo Green Pants - Made by Laufer',
       price: 19.54,
       description: 'Men Army Printed Cargo Trousers for Men',
@@ -356,6 +379,7 @@ const data = {
       },
     },
     {
+      id: 24,
       title: "Men's Training Shorts",
       price: 7.19,
       description:
@@ -372,6 +396,7 @@ const data = {
       },
     },
     {
+      id: 25,
       title: "Men's Arrow Necklace Gold",
       price: 299.99,
       description: "This is the perfect arrow necklace you'll ever see",
@@ -387,6 +412,7 @@ const data = {
       },
     },
     {
+      id: 26,
       title: 'Locket Shiv Baba',
       price: 10,
       description:
@@ -402,6 +428,7 @@ const data = {
       },
     },
     {
+      id: 27,
       title: 'Danseuse Étoile Choker Gold-finish metal | DIOR',
       price: 55.55,
       description:
@@ -418,6 +445,7 @@ const data = {
       },
     },
     {
+      id: 28,
       title: 'Cute, Premium Brooch',
       price: 14.0,
       description: "Just a cute one. fits for you, fo' sure.",
@@ -432,6 +460,7 @@ const data = {
       },
     },
     {
+      id: 29,
       title: 'Galanz Air Conditioner',
       price: 699.99,
       description: "It's a good one!",
@@ -447,6 +476,7 @@ const data = {
       },
     },
     {
+      id: 30,
       title: 'Clever Headphones | iClever',
       price: 36.99,
       description:
@@ -462,6 +492,7 @@ const data = {
       },
     },
     {
+      id: 31,
       title: 'USB Charger',
       price: 3.13,
       description: 'Standard USB Charger',
@@ -477,6 +508,7 @@ const data = {
       },
     },
     {
+      id: 32,
       title: 'USB Charger 3.2',
       price: 6.26,
       description: 'Not-Standard USB Charger',
@@ -492,6 +524,7 @@ const data = {
       },
     },
     {
+      id: 33,
       title: "Markie's Wedding Dress",
       price: 22.99,
       description: "Markie's Wedding Dress is short and sweet",
@@ -507,6 +540,7 @@ const data = {
       },
     },
     {
+      id: 34,
       title: 'Bik-Bok Long Yoga Pants',
       price: 24.85,
       description:
@@ -523,6 +557,7 @@ const data = {
       },
     },
     {
+      id: 35,
       title: 'Designer Pants for Women - FARFETCH',
       price: 14.99,
       description:
@@ -539,6 +574,7 @@ const data = {
       },
     },
     {
+      id: 36,
       title: 'HASTEN shoes for women',
       price: 15,
       description: 'Haste, and buy the damn product!',
