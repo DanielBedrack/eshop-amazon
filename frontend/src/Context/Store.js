@@ -17,14 +17,14 @@ const reducer = (state, action) => {
       const newItem = action.payload;
 
       const existingItem = state.cart.cartItems.find(
-        (item) => item.id === newItem.id
+        (item) => item._id === newItem._id
       );
 
       // If new item already exist in cart,it replace an old item to new with new QUANTITY ,else adding new item in cart.cartItems
       const cartItems = existingItem
       
         ? state.cart.cartItems.map((item) =>
-            item.id === existingItem.id ? newItem : item
+            item._id === existingItem._id ? newItem : item
           )
         : [...state.cart.cartItems, newItem];
 
@@ -37,7 +37,7 @@ const reducer = (state, action) => {
 
     case 'REMOVE_FROM_CART': {
       const cartItems = state.cart.cartItems.filter(
-        (item) => item.id !== action.payload.id
+        (item) => item._id !== action.payload._id
       );
 
       localStorage.setItem('cartItems', JSON.stringify(cartItems));

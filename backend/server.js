@@ -3,7 +3,8 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import seedRouter from './Routes/seedRoutes.js';
-import data from './data.js';
+import productRouter from './Routes/productRoutes.js';
+import userRouter from './Routes/userRoutes.js';
 
 dotenv.config();
 
@@ -13,41 +14,25 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+app.use('/api/v1/users', userRouter)
 app.use('/api/v1/seed', seedRouter);
-
-app.use('/api/v1/product/token/:token', async (req, res) => {
-  const product = await data.products.find((p) => p.token === req.params.token);
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: 'Product Not Found' });
-  }
+app.use('/api/v1/products', productRouter);
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message })
 });
 
-app.use('/api/v1/products/:id', async (req, res) => {
-  const product = await data.products.find((p) => p.id == req.params.id);
-  if (product) {
-    res.send(product);
-  } else {
-    res.status(404).send({ message: 'Product Not Found' });
-  }
-});
-
-//Endpoints
-app.get('/api/v1/products', (req, res) => {
-  res.send(data.products);
-});
 
 // MONGO_CONNECTION
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log('connected to Mongo');
+    console.log('connected to MongoDB');
     app.listen(PORT, () => {
       console.log(`Server is listening on PORT : ${PORT}`);
     });
   })
   .catch((error) => {
-    console.log(`Failed to connect to Mongo: ${error.message}`);
+    console.log(`Failed to connect to MongoDB: ${error.message}`);
   });

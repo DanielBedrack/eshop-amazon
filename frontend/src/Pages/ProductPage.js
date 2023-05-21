@@ -22,9 +22,10 @@ const reducer = (state, action) => {
 
     case 'GET_SUCCESS':      
       return { ...state, product: action.payload, loading: false };
-      
+
     case 'GET_FAIL':
-      return { ...state, loading: false, error: action.payload };
+      console.log("Fail")
+      return { ...state, error: action.payload, loading: false };
     default:
       return state;
   }
@@ -46,7 +47,7 @@ const ProductPage = () => {
     const getProduct = async () => {
       dispatch({ type: 'GET_REQUEST' });
       try {
-        const res = await axios.get(`/api/v1/product/token/${token}`);
+        const res = await axios.get(`/api/v1/products/token/${token}`);
 
         dispatch({ type: 'GET_SUCCESS', payload: res.data });
       } catch (error) {
@@ -62,9 +63,10 @@ const ProductPage = () => {
   const { cart } = state
 
   const addToCartHandler = async () => {
-    const existItem = cart.cartItems.find((x) => x.id === product.id);
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/v1/products/${product.id}`);
+    const { data } = await axios.get(`/api/v1/products/${product._id}`);
+    
     if (data.countInStock < quantity) {
       window.alert('Sorry. Product is out of stock');
       return;

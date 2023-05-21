@@ -16,7 +16,7 @@ const CartPage = () => {
   } = state
 
   const updateCartHandler = async (item, quantity) => {
-    const { data } = await axios.get(`/api/v1/products/${item.id}`)
+    const { data } = await axios.get(`/api/v1/products/${item._id}`)
     if (data.countInStock < quantity) {
       window.alert('Sorry. Product is out of stock')
       return
@@ -25,7 +25,7 @@ const CartPage = () => {
   }
 
   const removeCartHandler = async (item) => {
-    const { data } = await axios.get(`/api/v1/products/${item.id}`)
+    // const { data } = await axios.get(`/api/v1/products/${item._id}`)
 
     cxtDispatch({ type: 'REMOVE_FROM_CART', payload: item })
   }
@@ -52,7 +52,7 @@ const CartPage = () => {
           ) : (
             <ListGroup>
               {cartItems.map(item => (
-                <ListGroup.Item key={item.id}>
+                <ListGroup.Item key={item._id}>
                   <Row className='align-items-center'>
                     <Col md={4}>
                       <img

@@ -37,10 +37,7 @@ const HomePage = () => {
       } catch (err) {
         dispatch({ type: 'GET_FAIL', payload: getError(err) })
       }
-
-      //setProducts(res.data);
-    }
-
+    } 
     getProducts()
   }, [])
 
