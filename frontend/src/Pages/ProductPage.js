@@ -14,14 +14,15 @@ import MessageBox from '../Components/MessageBox';
 import { getError } from '../Utils';
 import { Store } from '../Context/Store';
 
+
 const reducer = (state, action) => {
   switch (action.type) {
     case 'GET_REQUEST':
       return { ...state, loading: true };
-      console.log(state);
-    case 'GET_SUCCESS':
-      
+
+    case 'GET_SUCCESS':      
       return { ...state, product: action.payload, loading: false };
+      
     case 'GET_FAIL':
       return { ...state, loading: false, error: action.payload };
     default:
@@ -63,8 +64,8 @@ const ProductPage = () => {
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x.id === product.id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    //const { data } = await axios.get(`/api/v1/products/${product.id}`);
-    if (product.countInStock < quantity) {
+    const { data } = await axios.get(`/api/v1/products/${product.id}`);
+    if (data.countInStock < quantity) {
       window.alert('Sorry. Product is out of stock');
       return;
     }

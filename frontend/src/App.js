@@ -9,6 +9,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { Badge, Nav } from 'react-bootstrap';
 import { useContext } from 'react';
 import { Store } from './Context/Store';
+import SigningPage from './Pages/SigningPage';
 
 function App() {
   const { state } = useContext(Store);
@@ -40,8 +41,9 @@ function App() {
           <Container className="mt-3">
             <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/product/:token" element={<ProductPage />} /> 
-              <Route path="/cart" element={<CartPage />} /> 
+              <Route path="/product/:token" element={<ProductPage />} />
+              <Route path="/cart" element={<CartPage />} />
+              <Route path="/signin" element={<SigningPage />} />
             </Routes>
           </Container>
         </main>

@@ -16,8 +16,8 @@ main{
   min-height: 100vh;
 }
 
-.rating span{
-  color:#ffc000;
+.rating-stars span{
+  color: #ffc000;
 }
 
 .btn-primary,
@@ -62,4 +62,8 @@ main{
 
 .image-tumbnail{
   height: 4rem;
+}
+
+.small-container {
+  max-width: 600px;
 }
