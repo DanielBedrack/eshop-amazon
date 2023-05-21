@@ -5,9 +5,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-     "start": "node server.js",
-      "devStart": "nodemon server.js"
+    "build": "echo \"No build specified\" && exit 1",
+    "test": "echo \"No test specified\" && exit 1",
+    "start": "node index.js",
+    "devStart": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
