@@ -4,8 +4,8 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from '../Components/product';
 import { Helmet } from 'react-helmet-async';
-import Loading from '../Components/Loading';
-import MessageBox from '../Components/MessageBox';
+import Loading from '../Components/Shared/Loading';
+import MessageBox from '../Components/Shared/MessageBox';
 import { getError } from '../Utils';
 
 const reducer = (state, action) => {
@@ -31,15 +31,15 @@ const HomePage = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        dispatch({ type: 'GET_REQUEST' })
-        const res = await axios.get(`/api/v1/products`) //try catch
-        dispatch({ type: 'GET_SUCCESS', payload: res.data })
+        dispatch({ type: 'GET_REQUEST' });
+        const res = await axios.get(`/api/v1/products`); //try catch
+        dispatch({ type: 'GET_SUCCESS', payload: res.data });
       } catch (err) {
-        dispatch({ type: 'GET_FAIL', payload: getError(err) })
+        dispatch({ type: 'GET_FAIL', payload: getError(err) });
       }
-    } 
-    getProducts()
-  }, [])
+    };
+    getProducts();
+  }, []);
 
   return (
     <div>
@@ -51,10 +51,10 @@ const HomePage = () => {
         {loading ? (
           <Loading />
         ) : error ? (
-          <MessageBox variant='danger'>{error}</MessageBox>
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <Row>
-            {products.map(product => (
+            {products.map((product) => (
               <Col key={product.token} lg={3} md={4} sm={6} className="mb-3">
                 <Product product={product} />
               </Col>

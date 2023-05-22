@@ -5,8 +5,8 @@ import ProductPage from './Pages/ProductPage';
 import CartPage from './Pages/CartPage';
 import Container from 'react-bootstrap/Container';
 import SigningPage from './Pages/SigningPage';
-import Navbar from './Components/NavBar';
-import Footer from './Components/Footer';
+import Navbar from './Components/Shared/NavBar';
+import Footer from './Components/Shared/Footer';
 
 function App() {
   return (

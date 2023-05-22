@@ -1,6 +1,6 @@
 import { createContext, useReducer } from 'react';
 
-export const Store = createContext()
+export const Store = createContext();
 
 const initialState = {
   cart: {
@@ -22,7 +22,6 @@ const reducer = (state, action) => {
 
       // If new item already exist in cart,it replace an old item to new with new QUANTITY ,else adding new item in cart.cartItems
       const cartItems = existingItem
-      
         ? state.cart.cartItems.map((item) =>
             item._id === existingItem._id ? newItem : item
           )
@@ -44,7 +43,8 @@ const reducer = (state, action) => {
 
       return { ...state, cart: { ...state.cart, cartItems } };
     }
-
+    case 'UPDATE_CART':
+      return { ...state, cart: { ...state.cart, cartItems: action.payload } };
     default:
       return state;
   }

@@ -67,3 +67,10 @@ main{
 .small-container {
   max-width: 600px;
 }
+.img-large{
+  max-width: 30rem;
+}
+.product-title {
+  text-decoration: none;
+  color: #000000
+}

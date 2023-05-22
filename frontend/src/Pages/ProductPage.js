@@ -6,25 +6,24 @@ import ListGroup from 'react-bootstrap/esm/ListGroup';
 import Card from 'react-bootstrap/esm/Card';
 import Button from 'react-bootstrap/esm/Button';
 import Badge from 'react-bootstrap/esm/Badge';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
 import { Helmet } from 'react-helmet-async';
-import Loading from '../Components/Loading';
-import MessageBox from '../Components/MessageBox';
+import Loading from '../Components/Shared/Loading';
+import MessageBox from '../Components/Shared/MessageBox';
 import { getError } from '../Utils';
 import { Store } from '../Context/Store';
-
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'GET_REQUEST':
       return { ...state, loading: true };
 
-    case 'GET_SUCCESS':      
+    case 'GET_SUCCESS':
       return { ...state, product: action.payload, loading: false };
 
     case 'GET_FAIL':
-      console.log("Fail")
+      console.log('Fail');
       return { ...state, error: action.payload, loading: false };
     default:
       return state;
@@ -32,7 +31,7 @@ const reducer = (state, action) => {
 };
 
 const ProductPage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const params = useParams();
 
   const { token } = params;
@@ -54,28 +53,28 @@ const ProductPage = () => {
         dispatch({ type: 'GET_FAIL', payload: getError(error) });
       }
     };
-    
+
     getProduct();
   }, [token]);
 
   // Calling reducer from Store context to add elemnts to cart
-  const { state, dispatch: cxtDispatch } = useContext(Store)
-  const { cart } = state
+  const { state, dispatch: cxtDispatch } = useContext(Store);
+  const { cart } = state;
 
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/v1/products/${product._id}`);
-    
+
     if (data.countInStock < quantity) {
       window.alert('Sorry. Product is out of stock');
       return;
     }
     cxtDispatch({
       type: 'ADD_TO_CART',
-      payload: { ...product, quantity }
+      payload: { ...product, quantity },
     });
-    navigate('/cart');
+    // navigate('/cart');
   };
 
   return (
@@ -85,70 +84,73 @@ const ProductPage = () => {
       ) : error ? (
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
-          <Row>
-            <Col md={6}>
-              <img
-                className="img-large"
-                src={product.image}
-                alt={product.title}
-              />
-            </Col>
-            <Col md={3}>
-              <ListGroup variant="flush">
-                <ListGroup.Item>
-                  <Helmet>
-                    <title>{product.title}</title>
-                  </Helmet>
-                  <h1>{product.title}</h1>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <Rating
-                    rating={product.rating.rate}
-                    numReviews={product.rating.count}
-                  ></Rating>
-                </ListGroup.Item>
-                <ListGroup.Item>Pirce : ${product.price}</ListGroup.Item>
-                <ListGroup.Item>
-                  Description : <p>{product.description}</p>
-                </ListGroup.Item>
-              </ListGroup>
-            </Col>
-            <Col md={3}>
-              <Card>
-                <Card.Body>
-                  <ListGroup variant="flush">
+        <Row>
+          <Col md={6}>
+            <img
+              className="img-large"
+              src={product.image}
+              alt={product.title}
+            />
+          </Col>
+          <Col md={3}>
+            <ListGroup variant="flush">
+              <ListGroup.Item>
+                <Helmet>
+                  <title>{product.title}</title>
+                </Helmet>
+                <h1>{product.title}</h1>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Rating
+                  rating={product.rating.rate}
+                  numReviews={product.rating.count}
+                ></Rating>
+              </ListGroup.Item>
+              <ListGroup.Item>Pirce : ${product.price}</ListGroup.Item>
+              <ListGroup.Item>
+                Description : <p>{product.description}</p>
+              </ListGroup.Item>
+            </ListGroup>
+          </Col>
+          <Col md={3}>
+            <Card>
+              <Card.Body>
+                <ListGroup variant="flush">
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Price:</Col>
+                      <Col>${product.price}</Col>
+                    </Row>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Status:</Col>
+                      <Col>
+                        {product.countInStock > 0 ? (
+                          <Badge bg="success">In Stock</Badge>
+                        ) : (
+                          <Badge bg="danger">Unavailable</Badge>
+                        )}
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                  {product.countInStock > 0 && (
                     <ListGroup.Item>
-                      <Row>
-                        <Col>Price:</Col>
-                        <Col>${product.price}</Col>
-                      </Row>
+                      <div className="d-grid">
+                        <Button
+                          onClick={() => addToCartHandler(product)}
+                          variant="primary"
+                        >
+                          Add to Cart
+                        </Button>
+                      </div>
                     </ListGroup.Item>
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Status:</Col>
-                        <Col>
-                          {product.countInStock > 0 ? (
-                            <Badge bg="success">In Stock</Badge>
-                          ) : (
-                            <Badge bg="danger">Unavailable</Badge>
-                          )}
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                    {product.countInStock > 0 && (
-                      <ListGroup.Item>
-                        <div className="d-grid">
-                          <Button onClick={() => addToCartHandler(product)} variant="primary">
-                            Add to Cart
-                          </Button>
-                        </div>
-                      </ListGroup.Item>
-                    )}
-                  </ListGroup>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
+                  )}
+                </ListGroup>
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
       )}
     </div>
   );

@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Badge, Nav } from 'react-bootstrap';
 import { useContext } from 'react';
-import { Store } from '../Context/Store';
+import { Store } from '../../Context/Store';
 
 const Navbar = () => {
   const { state } = useContext(Store);
