@@ -1,0 +1,13 @@
+export const GET_SUCCESS = 'GET_SUCCESS';
+export const GET_FAIL = 'GET_FAIL';
+export const GET_REQUEST = 'GET_REQUEST';
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const USER_SIGNIN = 'USER_SIGNIN';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+export const USER_SIGNOUT = 'USER_SIGNOUT';
+export const SAVE_PAYMENT_METHOD = 'SAVE_PAYMENT_METHOD';
+export const CREATE_FAILED = 'CREATE_FAILED';
+export const CREATE_REQUEST = 'CREATE_REQUEST';
+export const CREATE_SUCCEEDED = 'CREATE_SUCCEEDED';
+export const CLEAR_CART = 'CLEAR_CART';
+export const SAVE_SHIPPING_ADDRESS = 'SAVE_SHIPPING_ADDRESS';

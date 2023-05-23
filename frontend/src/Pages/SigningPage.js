@@ -2,11 +2,11 @@ import React from 'react';
 import { useState, useContext, useEffect } from 'react';
 import { Container, Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/esm/Button';
-import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getError } from '../Utils';
 import { Store } from '../Context/Store';
+import Title from '../Components/Shared/Title';
 //import { toast } from 'react-toastify'
 
 const SigningPage = () => {
@@ -44,9 +44,7 @@ const SigningPage = () => {
 
   return (
     <Container className="small-container">
-      <Helmet>
-        <title>Sign In</title>
-      </Helmet>
+      <Title title='Sign In' />
       <h1 className="my-3">Sign In</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="email">

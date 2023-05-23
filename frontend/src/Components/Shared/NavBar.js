@@ -14,7 +14,7 @@ const Navbar = () => {
   const isHomePage = location.pathname === '/';
 
   return (
-    <header>
+    <header className='my-navbar'>
       <NavBar bg="dark" variant="dark">
         <Container>
           <LinkContainer to="/">
@@ -32,7 +32,7 @@ const Navbar = () => {
               )}
             </NavBar.Brand>
           </LinkContainer>
-          <Nav className="ms-auto w-50 d-flex justify-content-end">
+          <Nav className="ms-auto w-50 d-flex align-items-center">
             <Link to="/cart" className="nav-link">
               <i className="fas fa-shopping-cart text-white"> </i>
               {cart.cartItems.length > 0 && (

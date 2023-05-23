@@ -3,26 +3,16 @@ import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Product from '../Components/product';
-import { Helmet } from 'react-helmet-async';
 import Loading from '../Components/Shared/Loading';
 import MessageBox from '../Components/Shared/MessageBox';
 import { getError } from '../Utils';
+import { homeReducer } from '../Reducer/homeReducer';
+import Title from '../Components/Shared/Title';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'GET_REQUEST':
-      return { ...state, loading: true };
-    case 'GET_SUCCESS':
-      return { ...state, products: action.payload, loading: false };
-    case 'GET_FAIL':
-      return { ...state, loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
+
 
 const HomePage = () => {
-  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, products }, dispatch] = useReducer(homeReducer, {
     loading: true,
     error: '',
     products: [],
@@ -32,7 +22,7 @@ const HomePage = () => {
     const getProducts = async () => {
       try {
         dispatch({ type: 'GET_REQUEST' });
-        const res = await axios.get(`/api/v1/products`); //try catch
+        const res = await axios.get(`/api/v1/products`); 
         dispatch({ type: 'GET_SUCCESS', payload: res.data });
       } catch (err) {
         dispatch({ type: 'GET_FAIL', payload: getError(err) });
@@ -43,9 +33,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>eShop</title>
-      </Helmet>
+      <Title title='eShop' />
       <h1>Products</h1>
       <div className="main-inner">
         {loading ? (

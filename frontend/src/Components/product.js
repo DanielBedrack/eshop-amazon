@@ -1,35 +1,20 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Rating from './Rating';
 import { Store } from '../Context/Store';
 import { useContext } from 'react';
-import axios from 'axios';
+import { CallingAddToCartHandler } from '../Utils';
 
 const Product = (props) => {
-  const navigate = useNavigate();
   // Adding element to Cart
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { product } = props;
   const { cart } = state;
 
-  const addToCartHandler = async () => {
-    const existItem = cart.cartItems.find((x) => x._id === product._id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`api/v1/products/${product._id}`);
-
-    if (data.countInStock < quantity) {
-      window.alert('Sorry. Product is out of stock');
-
-      return;
-    }
-
-    ctxDispatch({
-      type: 'ADD_TO_CART',
-      payload: { ...product, quantity: quantity },
-    });
-    navigate('/cart');
-  };
+   const addToCartHandler = () => {
+     CallingAddToCartHandler(product, cart, ctxDispatch);
+   };
 
   return (
     <Card className="product-card">

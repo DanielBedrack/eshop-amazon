@@ -8,41 +8,34 @@ import Button from 'react-bootstrap/esm/Button';
 import Badge from 'react-bootstrap/esm/Badge';
 import { useParams } from 'react-router-dom';
 import Rating from '../Components/Rating';
-import { Helmet } from 'react-helmet-async';
 import Loading from '../Components/Shared/Loading';
 import MessageBox from '../Components/Shared/MessageBox';
-import { getError } from '../Utils';
+import { getError, CallingAddToCartHandler } from '../Utils';
 import { Store } from '../Context/Store';
+import { productReducer } from '../Reducer/productReducer';
+import Title from '../Components/Shared/Title';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'GET_REQUEST':
-      return { ...state, loading: true };
-
-    case 'GET_SUCCESS':
-      return { ...state, product: action.payload, loading: false };
-
-    case 'GET_FAIL':
-      console.log('Fail');
-      return { ...state, error: action.payload, loading: false };
-    default:
-      return state;
-  }
-};
 
 const ProductPage = () => {
-  // const navigate = useNavigate();
   const params = useParams();
 
   const { token } = params;
 
-  const [{ loading, error, product }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, product }, dispatch] = useReducer(productReducer, {
     loading: true,
     error: '',
     product: [],
   });
 
-  useEffect(() => {
+  // Calling reducer from Store context to add elemnts to cart
+  const { state, dispatch: cxtDispatch } = useContext(Store);
+  const { cart } = state;
+
+  const addToCartHandler = () => {
+    CallingAddToCartHandler(product, cart, cxtDispatch);
+  };
+
+    useEffect(() => {
     const getProduct = async () => {
       dispatch({ type: 'GET_REQUEST' });
       try {
@@ -56,26 +49,6 @@ const ProductPage = () => {
 
     getProduct();
   }, [token]);
-
-  // Calling reducer from Store context to add elemnts to cart
-  const { state, dispatch: cxtDispatch } = useContext(Store);
-  const { cart } = state;
-
-  const addToCartHandler = async () => {
-    const existItem = cart.cartItems.find((x) => x._id === product._id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/v1/products/${product._id}`);
-
-    if (data.countInStock < quantity) {
-      window.alert('Sorry. Product is out of stock');
-      return;
-    }
-    cxtDispatch({
-      type: 'ADD_TO_CART',
-      payload: { ...product, quantity },
-    });
-    // navigate('/cart');
-  };
 
   return (
     <div>
@@ -95,9 +68,7 @@ const ProductPage = () => {
           <Col md={3}>
             <ListGroup variant="flush">
               <ListGroup.Item>
-                <Helmet>
-                  <title>{product.title}</title>
-                </Helmet>
+                <Title title={product.title} />
                 <h1>{product.title}</h1>
               </ListGroup.Item>
               <ListGroup.Item>
