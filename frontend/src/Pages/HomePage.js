@@ -33,7 +33,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <Title title='eShop' />
+    <Title title='eShop' />
       <h1>Products</h1>
       <div className="main-inner">
         {loading ? (

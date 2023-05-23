@@ -9,7 +9,7 @@ import Title from '../Components/Shared/Title'
 import { CallingSortHandler } from '../Utils'
 
 const CartPage = () => {
-  const { state, dispatch: cxtDispatch } = useContext(Store)
+  const { state, dispatch: ctxDispatch } = useContext(Store)
   const dragItem = useRef(null);
   const dragOverItem = useRef(null);
 
@@ -24,11 +24,11 @@ const CartPage = () => {
       window.alert('Sorry. Product is out of stock')
       return
     }
-    cxtDispatch({ type: 'ADD_TO_CART', payload: { ...item, quantity } })
+    ctxDispatch({ type: 'ADD_TO_CART', payload: { ...item, quantity } })
   }
 
   const removeCartHandler = async (item) => {
-    cxtDispatch({ type: 'REMOVE_FROM_CART', payload: item })
+    ctxDispatch({ type: 'REMOVE_FROM_CART', payload: item })
   }
 
   const checkoutHandler = () => {  
@@ -36,11 +36,8 @@ const CartPage = () => {
   }
 
   const handleSort = () => {
-    CallingSortHandler(cartItems, dragItem, dragOverItem, cxtDispatch);
+    CallingSortHandler(cartItems, dragItem, dragOverItem, ctxDispatch);
   };
-
-
-
 
   return (
     <div>
