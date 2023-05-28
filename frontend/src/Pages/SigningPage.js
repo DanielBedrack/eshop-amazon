@@ -8,13 +8,14 @@ import { Store } from '../Context/Store';
 //import Title from '../Components/Shared/Title';
 import { Helmet } from 'react-helmet-async';
 //import SignInForm from '../Components/SignInForm';
-import { toast } from 'react-toastify'
+//import { toast } from 'react-toastify'
 
 const SigningPage = () => {
  const navigate = useNavigate();
  const { search } = useLocation();
  // Gets redirect uri if user was redirected
  const redirectInUrl = new URLSearchParams(search).get('redirect');
+ console.log(redirectInUrl);
  const redirect = redirectInUrl ? redirectInUrl : '/';
 
  const [email, setEmail] = useState('');
@@ -35,8 +36,8 @@ const SigningPage = () => {
      // If user was in diffrend page, after signing in, automatacly redirect to page when he was, or to HomePage
      navigate(redirect || '/');
    } catch (err) {
-     //alert(getError(err))
-     toast.error(getError(err));
+     alert(getError(err))
+     //toast.error(getError(err));
    }
  };
 
