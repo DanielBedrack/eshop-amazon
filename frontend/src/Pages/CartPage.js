@@ -67,7 +67,12 @@ const CartPage = () => {
                         alt={item.title}
                         className="img-fluid rounded img-thumbnail"
                       />{' '}
-                      <Link to={`/products/${item.token}`}>{item.title}</Link>
+                      <Link
+                        to={`/product/${item.token}`}
+                        className="product-title"
+                      >
+                        <strong>{item.title}</strong>
+                      </Link>
                     </Col>
                     <Col md={3}>
                       {/* ------ */}

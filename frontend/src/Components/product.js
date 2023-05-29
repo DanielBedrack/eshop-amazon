@@ -28,7 +28,7 @@ const Product = (props) => {
         </Link>
       </div>
       <Card.Body>
-        <Link to={`/product/${product.token}`} className="product-title">
+        <Link to={`/product/${product.token}`} className="product-title" >
           <Card.Title>{product.title}</Card.Title>
         </Link>
         <Card.Text>
