@@ -14,6 +14,7 @@ import { getError, CallingAddToCartHandler } from '../Utils';
 import { Store } from '../Context/Store';
 import { productReducer } from '../Reducer/productReducer';
 import Title from '../Components/Shared/Title';
+import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from '../Actions';
 
 
 const ProductPage = () => {
@@ -37,13 +38,13 @@ const ProductPage = () => {
 
     useEffect(() => {
     const getProduct = async () => {
-      dispatch({ type: 'GET_REQUEST' });
+      dispatch({ type: GET_REQUEST });
       try {
         const res = await axios.get(`/api/v1/products/token/${token}`);
 
-        dispatch({ type: 'GET_SUCCESS', payload: res.data });
+        dispatch({ type: GET_SUCCESS, payload: res.data });
       } catch (error) {
-        dispatch({ type: 'GET_FAIL', payload: getError(error) });
+        dispatch({ type: GET_FAIL, payload: getError(error) });
       }
     };
 

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ADD_TO_CART, UPDATE_CART } from './Actions';
 
 export const getError = (error) => {
   return error.response && error.response.data.message
@@ -16,7 +17,7 @@ export const CallingAddToCartHandler = async (product, cart, ctxDispatch) => {
     return;
   }
   ctxDispatch({
-    type: 'ADD_TO_CART',
+    type: ADD_TO_CART,
     payload: { ...product, quantity },
   });
 };
@@ -41,5 +42,26 @@ export const CallingSortHandler = (cartItems, dragItem, dragOverItem, cxtDispatc
   dragItem.current = null;
   dragOverItem.current = null;
 
-  cxtDispatch({ type: 'UPDATE_CART', payload: _cartItems });
+  cxtDispatch({ type: UPDATE_CART, payload: _cartItems });
+};
+
+export const getFilterUrl = (searchFromURI, filter, skipPathname) => {
+  const searchParams = new URLSearchParams(searchFromURI);
+  const category = searchParams.get('category') || 'all';
+  const query = searchParams.get('query') || 'all';
+  const price = searchParams.get('price') || 'all';
+  const rating = searchParams.get('rating') || 'all';
+  const order = searchParams.get('order') || 'newest';
+  const page = searchParams.get('page') || 1;
+
+  const filterPage = filter.page || page;
+  const filterCategory = filter.category || category;
+  const filterQuery = filter.query || query;
+  const filterRating = filter.rating || rating;
+  const filterPrice = filter.price || price;
+  const sortOrder = filter.order || order;
+  const link = `${
+    skipPathname ? '' : '/search?'
+  }category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
+  return link;
 };

@@ -8,6 +8,8 @@ import MessageBox from '../Components/Shared/MessageBox';
 import { getError } from '../Utils';
 import { homeReducer } from '../Reducer/homeReducer';
 import Title from '../Components/Shared/Title';
+import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from '../Actions';
+
 
 
 
@@ -21,11 +23,11 @@ const HomePage = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        dispatch({ type: 'GET_REQUEST' });
+        dispatch({ type: GET_REQUEST });
         const res = await axios.get(`/api/v1/products`); 
-        dispatch({ type: 'GET_SUCCESS', payload: res.data });
+        dispatch({ type: GET_SUCCESS, payload: res.data });
       } catch (err) {
-        dispatch({ type: 'GET_FAIL', payload: getError(err) });
+        dispatch({ type: GET_FAIL, payload: getError(err) });
       }
     };
     getProducts();

@@ -1,6 +1,8 @@
+import { ADD_TO_CART, REMOVE_FROM_CART, UPDATE_CART, USER_SIGNIN, USER_SIGNOUT } from '../Actions';
+
 export const storeReducer = (state, { type, payload }) => {
   switch (type) {
-    case 'ADD_TO_CART': {
+    case ADD_TO_CART: {
       // Getting new item that was added to cart with new parameter: QUANTITY
       const newItem = payload;
 
@@ -20,7 +22,7 @@ export const storeReducer = (state, { type, payload }) => {
       return { ...state, cart: { ...state.cart, cartItems } };
     }
 
-    case 'REMOVE_FROM_CART': {
+    case REMOVE_FROM_CART: {
       const cartItems = state.cart.cartItems.filter(
         (item) => item._id !== payload._id
       );
@@ -29,14 +31,14 @@ export const storeReducer = (state, { type, payload }) => {
 
       return { ...state, cart: { ...state.cart, cartItems } };
     }
-    case 'UPDATE_CART':
+    case UPDATE_CART:
       return { ...state, cart: { ...state.cart, cartItems: payload } };
 
-    case 'USER_SIGNIN':
+    case USER_SIGNIN:
       return { ...state, userInfo: payload };
 
-    case 'USER_SIGNOUT':
-      return { ...state };
+    case USER_SIGNOUT:
+      return { ...state, userInfo: null };
 
     default:
       return state;

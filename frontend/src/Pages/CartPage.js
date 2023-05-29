@@ -7,6 +7,8 @@ import axios from 'axios'
 import { Store } from '../Context/Store'
 import Title from '../Components/Shared/Title'
 import { CallingSortHandler } from '../Utils'
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../Actions';
+
 
 const CartPage = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store)
@@ -24,11 +26,11 @@ const CartPage = () => {
       window.alert('Sorry. Product is out of stock')
       return
     }
-    ctxDispatch({ type: 'ADD_TO_CART', payload: { ...item, quantity } })
+    ctxDispatch({ type: ADD_TO_CART, payload: { ...item, quantity } })
   }
 
   const removeCartHandler = async (item) => {
-    ctxDispatch({ type: 'REMOVE_FROM_CART', payload: item })
+    ctxDispatch({ type: REMOVE_FROM_CART, payload: item })
   }
 
   const checkoutHandler = () => {  
@@ -41,22 +43,20 @@ const CartPage = () => {
 
   return (
     <div>
-      <Title title='Shopping Curt' />
+      <Title title="Shopping Curt" />
       <h1>Shopping Cart</h1>
       <Row>
         <Col md={8}>
           {cartItems.length === 0 ? (
-            <MessageBox>
-              Cart is empty.
-            </MessageBox>
+            <MessageBox>Cart is empty.</MessageBox>
           ) : (
             <ListGroup>
               {cartItems.map((item, index) => (
                 <ListGroup.Item
                   key={item._id}
                   draggable
-                  onDragStart={() => dragItem.current=index}
-                  onDragEnter={() => dragOverItem.current=index}
+                  onDragStart={() => (dragItem.current = index)}
+                  onDragEnter={() => (dragOverItem.current = index)}
                   onDragEnd={handleSort}
                   onDragOver={(e) => e.preventDefault()}
                 >
@@ -113,9 +113,16 @@ const CartPage = () => {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>
-                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
-                    items:) : ${' '}
-                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                    {/* Counts the items the cart */}
+                    Subtotal ({cartItems.reduce(
+                      (a, c) => a + c.quantity,
+                      0
+                    )}{' '}
+                    {/* Calculates the overall price */}
+                    Items) : $
+                    {cartItems
+                      .reduce((a, c) => a + c.price * c.quantity, 0)
+                      .toFixed(2)}
                   </h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -124,7 +131,7 @@ const CartPage = () => {
                       type="button"
                       variant="primary"
                       disabled={cartItems.length === 0}
-                      onClick={checkoutHandler}
+                      onClick={() => checkoutHandler()}
                     >
                       Checkout
                     </Button>
