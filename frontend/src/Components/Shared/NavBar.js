@@ -29,7 +29,7 @@ const Navbar = () => {
           <LinkContainer to="/">
             <NavBar.Brand>
               <img
-                src="./images/logo.png"
+                src="../../images/logo.png"
                 style={{ width: '180px'}}
                 alt="amazon-logo"
               />

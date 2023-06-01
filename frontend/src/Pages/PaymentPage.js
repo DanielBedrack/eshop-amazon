@@ -10,12 +10,9 @@ import { Button, Form } from "react-bootstrap";
 const PaymentPage = () => {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const {
-    cart: { shippingAddress, paymentMethod },
-  } = state;
-  const [paymentMethodName, setPaymentMethodName] = useState(
-    paymentMethod || 'PayPal'
-  );
+  const { cart: { shippingAddress, paymentMethod }} = state;
+
+  const [paymentMethodName, setPaymentMethodName] = useState(paymentMethod || 'PayPal');
 
   const submitHandler = (e) => {
     e.preventDefault();

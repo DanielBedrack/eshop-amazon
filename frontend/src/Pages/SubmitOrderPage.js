@@ -50,11 +50,12 @@ const SubmitOrderPage = () => {
                 itemsPrice: cart.itemsPrice,
                 shippingPrice: cart.shippingPrice,
                 taxPrice: cart.taxPrice,
-                totalPrice: cart.totalPrice
+                totalPrice: cart.totalPrice,
             }, {
                 headers: { authorization: `Bearer ${userInfo.token}` }
             })
             console.log(data)
+            console.log(cart.itemsPrice)
             dispatch({ type: CREATE_SUCCEEDED });
 
             ctxDispatch({ type: CLEAR_CART });
@@ -95,7 +96,7 @@ const SubmitOrderPage = () => {
                             <Card.Title>Shipping</Card.Title>
                             <Card.Text>
                                 <strong>Name: </strong>
-                                {cart.shippingAddress.fullName}
+                                {cart.shippingAddress.name}
                                 <br />
                                 <strong>Address: </strong>
                                 {cart.shippingAddress.address}

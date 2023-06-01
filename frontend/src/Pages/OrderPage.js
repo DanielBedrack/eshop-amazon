@@ -36,7 +36,7 @@ const OrderPage = () => {
     order: null,
     error: '',
   });
-
+// console.log(order.shippingPrice);
   useEffect(() => {
     const getOrder = async () => {
       dispatch({ type: GET_REQUEST });
@@ -46,6 +46,7 @@ const OrderPage = () => {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: GET_SUCCESS, payload: data });
+        console.log(data)
       } catch (err) {
         dispatch({ type: GET_FAIL, payload: getError(err) });
       }
@@ -72,7 +73,7 @@ const OrderPage = () => {
             <Card.Body>
               <Card.Title>Shipping</Card.Title>
               <Card.Text>
-                <strong>Name: </strong> {order.shippingAddress.fullName} <br />
+                <strong>Name: </strong> {order.shippingAddress.name} <br />
                 <strong>Address: </strong> {order.shippingAddress.address},
                 {order.shippingAddress.city} ,{order.shippingAddress.country}
               </Card.Text>
