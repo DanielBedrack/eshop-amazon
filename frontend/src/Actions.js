@@ -5,6 +5,7 @@ export const ADD_TO_CART = 'ADD_TO_CART';
 export const USER_SIGNIN = 'USER_SIGNIN';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 export const USER_SIGNOUT = 'USER_SIGNOUT';
+export const USER_SIGNUP = 'USER_SIGNUP';
 export const SAVE_PAYMENT_METHOD = 'SAVE_PAYMENT_METHOD';
 export const CREATE_FAILED = 'CREATE_FAILED';
 export const CREATE_REQUEST = 'CREATE_REQUEST';

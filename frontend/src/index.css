@@ -7,16 +7,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-main{
+main {
   flex: 1;
-
 }
 
-.side-allpage{
+.side-allpage {
   min-height: 100vh;
 }
 
-.rating-stars span{
+.rating-stars span {
   color: #ffc000;
 }
 
@@ -26,9 +25,9 @@ main{
   color: #000000;
   border-width: 0px;
 }
-.btn-primary:hover, 
-.btn-primary:focus, 
-.btn-outline-primary:hover, 
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-outline-primary:hover,
 .btn-outline-primary:focus {
   background-color: #d3a62c;
   color: #000000;
@@ -48,7 +47,7 @@ main{
   transform: scale(1.02);
 }
 
-.div-img{
+.div-img {
   max-width: 15rem;
   height: 25rem;
   align-items: center;
@@ -56,26 +55,35 @@ main{
   display: flex;
 }
 
-.div-img img{
+.div-img img {
   max-height: 15rem;
 }
 
-.image-tumbnail{
+.image-tumbnail {
   height: 4rem;
 }
 
 .small-container {
   max-width: 600px;
 }
-.img-large{
+.img-large {
   max-width: 30rem;
 }
 .product-title {
   text-decoration: none;
-  color: #000000
+  color: #000000;
 }
 .my-navbar {
   position: sticky;
   top: 0;
   z-index: 999;
+  background-color: #000;
+}
+.home-page {
+  background-image: url("https://images.pexels.com/photos/268941/pexels-photo-268941.jpeg?cs=srgb&dl=pexels-pixabay-268941.jpg&fm=jpg");
+  min-height: 100vh;
+
+}
+.search-box {
+  height: 6vh;
 }

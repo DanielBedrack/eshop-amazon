@@ -7,13 +7,15 @@ import PaymentPage from './Pages/PaymentPage';
 import SubmitOrderPage from './Pages/SubmitOrderPage';
 import Container from 'react-bootstrap/Container';
 import SigninPage from './Pages/SigninPage';
+import SignupPage from './Pages/SignUpPage';
 import ShippingAdressPage from './Pages/ShippingAdressPage';
 import SearchPage from './Pages/SearchPage';
 import Navbar from './Components/Shared/NavBar';
 import Footer from './Components/Shared/Footer';
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css' 
+import 'react-toastify/dist/ReactToastify.css';
 import OrderPage from './Pages/OrderPage';
+import ResetPasswordPage from './Pages/ResetPasswordPage';
 
 function App() {
   return (
@@ -28,12 +30,13 @@ function App() {
               <Route path="/product/:token" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
               <Route path="/signin" element={<SigninPage />} />
+              <Route path="/signup" element={<SignupPage />} />
+              <Route path="/forget-password" element={<ResetPasswordPage />} />
               <Route path="/shipping" element={<ShippingAdressPage />} />
               <Route path="/payment" element={<PaymentPage />} />
               <Route path="/placeorder" element={<SubmitOrderPage />} />
-              <Route path='/order/:id' element={<OrderPage />}/>
-              <Route path='/search' element={<SearchPage />}/>
-
+              <Route path="/order/:id" element={<OrderPage />} />
+              <Route path="/search" element={<SearchPage />} />
             </Routes>
           </Container>
         </main>

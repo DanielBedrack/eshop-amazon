@@ -24,10 +24,10 @@ const SearchBox = () => {
     }
     const filterURI = getFilterUrl(search, { query: query });
     navigate(filterURI);
-  }, [query]);
+  }, [query, navigate, search]);
 
   return (
-    <Form onSubmit={(e) => submitHandler(e)} className="d-flex me-auto w-50">
+    <Form onSubmit={(e) => submitHandler(e)} className="d-flex me-auto w-100 search-box">
       <InputGroup>
         <FormControl
           aria-describedby="button-search"

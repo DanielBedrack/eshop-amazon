@@ -28,7 +28,11 @@ const Navbar = () => {
         <Container>
           <LinkContainer to="/">
             <NavBar.Brand>
-              EShop
+              <img
+                src="./images/logo.png"
+                style={{ width: '180px'}}
+                alt="amazon-logo"
+              />
               {!isHomePage && (
                 <span style={{ color: 'white', marginLeft: '5rem' }}>
                   <Link
@@ -52,7 +56,11 @@ const Navbar = () => {
               )}
             </Link>
             {userInfo ? (
-              <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+              <NavDropdown
+                title={userInfo.name}
+                id="basic-nav-dropdown"
+                style={{ color: 'white' }}
+              >
                 <LinkContainer to="/profile">
                   <NavDropdown.Item>User Profile</NavDropdown.Item>
                 </LinkContainer>

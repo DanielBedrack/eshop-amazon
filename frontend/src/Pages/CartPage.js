@@ -1,41 +1,40 @@
-import React, { useContext, useRef } from 'react'
-import MessageBox from '../Components/Shared/MessageBox'
-import { Card, Col, ListGroup, Row } from 'react-bootstrap'
-import Button from 'react-bootstrap/Button'
-import { Link, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import { Store } from '../Context/Store'
-import Title from '../Components/Shared/Title'
-import { CallingSortHandler } from '../Utils'
+import React, { useContext, useRef } from 'react';
+import MessageBox from '../Components/Shared/MessageBox';
+import { Card, Col, ListGroup, Row } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { Store } from '../Context/Store';
+import Title from '../Components/Shared/Title';
+import { CallingSortHandler } from '../Utils';
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../Actions';
 
-
 const CartPage = () => {
-  const { state, dispatch: ctxDispatch } = useContext(Store)
+  const { state, dispatch: ctxDispatch } = useContext(Store);
   const dragItem = useRef(null);
   const dragOverItem = useRef(null);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
-    cart: { cartItems }
-  } = state
+    cart: { cartItems },
+  } = state;
 
   const updateCartHandler = async (item, quantity) => {
-    const { data } = await axios.get(`/api/v1/products/${item._id}`)
+    const { data } = await axios.get(`/api/v1/products/${item._id}`);
     if (data.countInStock < quantity) {
-      window.alert('Sorry. Product is out of stock')
-      return
+      window.alert('Sorry. Product is out of stock');
+      return;
     }
-    ctxDispatch({ type: ADD_TO_CART, payload: { ...item, quantity } })
-  }
+    ctxDispatch({ type: ADD_TO_CART, payload: { ...item, quantity } });
+  };
 
   const removeCartHandler = async (item) => {
-    ctxDispatch({ type: REMOVE_FROM_CART, payload: item })
-  }
+    ctxDispatch({ type: REMOVE_FROM_CART, payload: item });
+  };
 
-  const checkoutHandler = () => {  
-    navigate('/signin?redirect=/shipping');    
-  }
+  const checkoutHandler = () => {
+    navigate('/signin?redirect=/shipping');
+  };
 
   const handleSort = () => {
     CallingSortHandler(cartItems, dragItem, dragOverItem, ctxDispatch);
@@ -149,6 +148,6 @@ const CartPage = () => {
       </Row>
     </div>
   );
-}
+};
 
-export default CartPage
+export default CartPage;

@@ -54,7 +54,7 @@ const SubmitOrderPage = () => {
             }, {
                 headers: { authorization: `Bearer ${userInfo.token}` }
             })
-
+            console.log(data)
             dispatch({ type: CREATE_SUCCEEDED });
 
             ctxDispatch({ type: CLEAR_CART });
