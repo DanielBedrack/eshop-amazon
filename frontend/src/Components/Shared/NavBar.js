@@ -57,7 +57,7 @@ const Navbar = () => {
             </Link>
             {userInfo ? (
               <NavDropdown
-                title={userInfo.name}
+                title={(userInfo.name).split(" ")[0]}
                 id="basic-nav-dropdown"
                 style={{ color: 'white' }}
               >

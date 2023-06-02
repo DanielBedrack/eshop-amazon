@@ -36,7 +36,6 @@ const HomePage = () => {
   return (
     <div className='home-page'>
     <Title title='eShop' />
-      <h1>Products</h1>
       <div className="main-inner">
         {loading ? (
           <Loading />

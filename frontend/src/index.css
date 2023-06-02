@@ -37,9 +37,9 @@ main {
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
   box-shadow: none;
   transform: scale(1);
-  width: 100%;
+  width: 95%;
   height: 35rem;
-  margin: 1rem 0;
+  margin: 1rem 1rem;
 }
 
 .product-card:hover {
@@ -80,10 +80,12 @@ main {
   background-color: #000;
 }
 .home-page {
-  background-image: url("https://images.pexels.com/photos/268941/pexels-photo-268941.jpeg?cs=srgb&dl=pexels-pixabay-268941.jpg&fm=jpg");
+  background-image: url('https://images.pexels.com/photos/268941/pexels-photo-268941.jpeg?cs=srgb&dl=pexels-pixabay-268941.jpg&fm=jpg');
   min-height: 100vh;
-
 }
 .search-box {
   height: 6vh;
+}
+.nav-link {
+  font-size: 1.5rem;
 }

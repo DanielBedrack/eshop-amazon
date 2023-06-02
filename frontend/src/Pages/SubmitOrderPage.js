@@ -43,7 +43,7 @@ const SubmitOrderPage = () => {
         try {
             dispatch({ type: CREATE_REQUEST });
 
-            const { data } = await axios.post("/api/v1/orders", {
+            const { data } = await axios.post("api/v1/orders", {
                 orderItems: cart.cartItems,
                 shippingAddress: cart.shippingAddress,
                 paymentMethod: cart.paymentMethod,
@@ -56,8 +56,10 @@ const SubmitOrderPage = () => {
             })
             console.log(data)
             console.log(cart.itemsPrice)
+            console.log(userInfo.token)
             dispatch({ type: CREATE_SUCCEEDED });
 
+            localStorage.setItem('order', data)
             ctxDispatch({ type: CLEAR_CART });
 
             localStorage.removeItem('cartItems');
