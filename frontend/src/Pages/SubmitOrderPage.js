@@ -13,6 +13,7 @@ import Title from '../Components/Shared/Title';
 import CheckoutSteps from '../Components/Shared/CheckoutSteps';
 import { Row, Col, ListGroup, Card, Button } from 'react-bootstrap';
 import Loading from '../Components/Shared/Loading';
+import { getError } from '../Utils';
 
 const reducer = (state, { type }) => {
     switch (type) {
@@ -27,7 +28,6 @@ const reducer = (state, { type }) => {
             return state;
     }
 };
-
 
 
 const SubmitOrderPage = () => {
@@ -56,7 +56,6 @@ const SubmitOrderPage = () => {
             })
             console.log(data)
             console.log(cart.itemsPrice)
-            console.log(userInfo.token)
             dispatch({ type: CREATE_SUCCEEDED });
 
             localStorage.setItem('order', data)
@@ -68,7 +67,7 @@ const SubmitOrderPage = () => {
 
         } catch (err) {
             dispatch({ type: CREATE_FAILED });
-            toast.error(err.message);
+            toast.error(getError(err));
         }
     }
 

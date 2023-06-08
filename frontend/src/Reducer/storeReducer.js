@@ -7,6 +7,7 @@ import {
   USER_SIGNIN,
   USER_SIGNOUT,
   USER_SIGNUP,
+  CLEAR_CART
 } from '../Actions';
 
 export const storeReducer = (state, { type, payload }) => {
@@ -40,6 +41,9 @@ export const storeReducer = (state, { type, payload }) => {
 
       return { ...state, cart: { ...state.cart, cartItems } };
     }
+    case CLEAR_CART:
+      return {...state, cart: {...state.cart, cartItems: []}}
+      
     case UPDATE_CART:
       return { ...state, cart: { ...state.cart, cartItems: payload } };
 

@@ -22,36 +22,30 @@ const orderSchema = mongoose.Schema(
       city: { type: String, require: true },
       postalCode: { type: String, require: false },
       country: { type: String, require: true },
-      location: {
-        lat: Number,
-        lan: Number,
-        address: String,
-        name: String,
-        vicinity: String,
-        googleAddressId: String,
-      },
-      paymentMethod: { type: String, require: true },
-      paymentResult: {
-        id: String,
-        status: String,
-        update_time: String,
-        email_address: String,
-      },
-      itemsPrice: { type: Number, require: true },
-      shippingPrice: { type: Number, require: true },
-      taxPrice: { type: Number, require: true },
-      totalPrice: { type: Number, require: true },
-      user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'user',
-        require: true,
-      },
-      isPaid: { type: Boolean, require: true },
-      paidAt: { type: Date },
-      isDelivered: { type: Boolean, default: false },
-      deliveredAt: { type: Date },
     },
+
+    paymentMethod: { type: String, require: true },
+    paymentResult: {
+      id: String,
+      status: String,
+      update_time: String,
+      email_address: String,
+    },
+    itemsPrice: { type: Number, require: true },
+    shippingPrice: { type: Number, require: true },
+    taxPrice: { type: Number, require: true },
+    totalPrice: { type: Number, require: true },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'user',
+      require: true,
+    },
+    isPaid: { type: Boolean, require: true },
+    paidAt: { type: Date },
+    isDelivered: { type: Boolean, default: false },
+    deliveredAt: { type: Date },
   },
+
   { timestamp: true }
 );
 const Order = mongoose.model('Order', orderSchema);

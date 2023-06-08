@@ -36,6 +36,7 @@ orderRouter.post(
       user: req.user._id,
     });
 
+    console.log('total price: '+req.body.totalPrice);
     const order = await newOrder.save();
     res.status(201).send({ message: 'New Order Created', order });
   })

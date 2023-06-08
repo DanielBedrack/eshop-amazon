@@ -36,7 +36,7 @@ const OrderPage = () => {
     order: null,
     error: '',
   });
-// console.log(order.shippingPrice);
+  // console.log(order.shippingPrice);
   useEffect(() => {
     const getOrder = async () => {
       dispatch({ type: GET_REQUEST });
@@ -46,7 +46,7 @@ const OrderPage = () => {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: GET_SUCCESS, payload: data });
-        console.log("Data:"+data)
+        console.log('Data:' + data);
       } catch (err) {
         dispatch({ type: GET_FAIL, payload: getError(err) });
       }
@@ -77,7 +77,7 @@ const OrderPage = () => {
                 <strong>Address: </strong> {order.shippingAddress.address},
                 {order.shippingAddress.city} ,{order.shippingAddress.country}
               </Card.Text>
-              {order.isDelivered ? (
+              {!order.isDelivered ? (
                 <MessageBox variant="success">
                   Delivered at {order.deliveredAt}
                 </MessageBox>
@@ -156,7 +156,7 @@ const OrderPage = () => {
                       <strong> Order Total</strong>
                     </Col>
                     <Col>
-                      <strong>${order.totalPrice}</strong>
+                      <strong>${order.totalPrice.toFixed(2)}</strong>
                     </Col>
                   </Row>
                 </ListGroup.Item>
