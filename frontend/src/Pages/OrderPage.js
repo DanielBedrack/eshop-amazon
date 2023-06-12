@@ -24,6 +24,13 @@ const reducer = (state, { type, payload }) => {
 };
 
 const OrderPage = () => {
+  const currentDate = new Date();
+  const futureDate = new Date();
+  futureDate.setDate(currentDate.getDate() + 7);
+const formatDate = (date) => {
+  return `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+};
+
   const {
     state: { userInfo },
   } = useContext(Store);
@@ -59,6 +66,7 @@ const OrderPage = () => {
     }
   }, [naviagte, order, orderId, userInfo]);
 
+
   return loading ? (
     <Loading />
   ) : error ? (
@@ -79,7 +87,7 @@ const OrderPage = () => {
               </Card.Text>
               {!order.isDelivered ? (
                 <MessageBox variant="success">
-                  Delivered at {order.deliveredAt}
+                  Delivered at {formatDate(futureDate)}
                 </MessageBox>
               ) : (
                 <MessageBox variant="danger">Not Delivered</MessageBox>
@@ -92,9 +100,9 @@ const OrderPage = () => {
               <Card.Text>
                 <strong>Method: </strong> {order.paymentMethod}
               </Card.Text>
-              {order.isPaid ? (
+              {!order.isPaid ? (
                 <MessageBox variant="success">
-                  Paid at {order.paidAt}
+                  Paid at {formatDate(currentDate)}
                 </MessageBox>
               ) : (
                 <MessageBox variant="danger">Not Paid</MessageBox>

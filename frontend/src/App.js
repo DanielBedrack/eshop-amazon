@@ -16,6 +16,8 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import OrderPage from './Pages/OrderPage';
 import ResetPasswordPage from './Pages/ResetPasswordPage';
+import HistoryOrderPage from './Pages/HistoryOrderPage';
+import ProfilePage from './Pages/ProfilePage';
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
               <Route path="/placeorder" element={<SubmitOrderPage />} />
               <Route path="/order/:id" element={<OrderPage />} />
               <Route path="/search" element={<SearchPage />} />
+              <Route path="/orderhistory" element={<HistoryOrderPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
             </Routes>
           </Container>
         </main>

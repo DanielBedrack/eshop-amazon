@@ -8,6 +8,21 @@ import { isAuth } from '../utils.js'
 const orderRouter = express.Router();
 
 orderRouter.get(
+  '/history/:_id',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const userById = await User.findById(req.params._id);
+      const orders = await Order.find({ user: userById });
+
+      res.status(201).send(orders);
+    } catch (err) {
+      res.status(404).send({ message: 'User not found' });
+    }
+  })
+);
+
+orderRouter.get(
   '/:id',
   isAuth,
   expressAsyncHandler(async (req, res) => {

@@ -67,7 +67,7 @@ const ProductPage = () => {
             />
           </Col>
           <Col md={3}>
-            <ListGroup variant="flush">
+            <ListGroup >
               <ListGroup.Item>
                 <Title title={product.title} />
                 <h1>{product.title}</h1>
