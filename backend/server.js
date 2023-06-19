@@ -6,18 +6,13 @@ import seedRouter from './Routes/seedRoutes.js';
 import productRouter from './Routes/productRoutes.js';
 import userRouter from './Routes/userRoutes.js';
 import orderRouter from './Routes/orderRoutes.js';
+import path from 'path'
 
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-
-
-
-
-// Define your API routes here
-
 
 
 app.use(express.static(path.join(__dirname, 'build')));
