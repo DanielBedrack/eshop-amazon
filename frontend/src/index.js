@@ -6,6 +6,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import { HelmetProvider } from 'react-helmet-async';
 import StoreProvider from './Context/Store';
+import axios from 'axios';
+
+axios.defaults.baseURL = 'https://e-shop-backend-z3be.onrender.com';
+//axios.defaults.baseURL = 'http://localhost:5000/api/v1';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
