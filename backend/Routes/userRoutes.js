@@ -6,9 +6,11 @@ import bcrypt from 'bcryptjs';
 
 const userRouter = express.Router();
 
-userRouter.post('/signin', expressAsyncHandler(async (req, res) => {
+userRouter.post(
+  '/signin',
+  expressAsyncHandler(async (req, res) => {
     const user = await User.findOne({ email: req.body.email });
-    console.log(user)
+    console.log(user);
     if (user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         res.send({
@@ -57,7 +59,9 @@ userRouter.post(
     } catch (error) {
       res
         .status(500)
-        .send({ message: 'Error occurred while creating the user'+ error.message });
+        .send({
+          message: 'Error occurred while creating the user' + error.message,
+        });
     }
   })
 );

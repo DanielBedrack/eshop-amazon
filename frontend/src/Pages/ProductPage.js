@@ -12,7 +12,7 @@ import Loading from '../Components/Shared/Loading';
 import MessageBox from '../Components/Shared/MessageBox';
 import { getError, CallingAddToCartHandler } from '../Utils';
 import { Store } from '../Context/Store';
-import { productReducer } from '../Reducer/productReducer';
+import { productReducer } from '../Reducers/productReducer';
 import Title from '../Components/Shared/Title';
 import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from '../Actions';
 

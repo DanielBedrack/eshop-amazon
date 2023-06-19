@@ -6,7 +6,7 @@ import Product from '../Components/product';
 import Loading from '../Components/Shared/Loading';
 import MessageBox from '../Components/Shared/MessageBox';
 import { getError } from '../Utils';
-import { homeReducer } from '../Reducer/homeReducer';
+import { homeReducer } from '../Reducers/homeReducer';
 import Title from '../Components/Shared/Title';
 import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from '../Actions';
 
