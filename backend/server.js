@@ -13,6 +13,14 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
+
+
+
+// Define your API routes here
+
+
+
+app.use(express.static(path.join(__dirname, 'build')));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +32,10 @@ app.use('/api/v1/orders', orderRouter);
 app.use((err, req, res, next) => {
   console.log('error: '+ err.message)
   res.status(500).send({ message: err.message+ 'from SERVER' })
+});
+// Define the catch-all route
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 
