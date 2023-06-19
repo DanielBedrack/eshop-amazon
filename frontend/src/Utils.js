@@ -24,7 +24,12 @@ export const CallingAddToCartHandler = async (product, cart, ctxDispatch) => {
 
 // handleSort.js
 
-export const CallingSortHandler = (cartItems, dragItem, dragOverItem, cxtDispatch) => {
+export const CallingSortHandler = (
+  cartItems,
+  dragItem,
+  dragOverItem,
+  cxtDispatch
+) => {
   if (
     dragItem.current === null ||
     dragOverItem.current === null ||

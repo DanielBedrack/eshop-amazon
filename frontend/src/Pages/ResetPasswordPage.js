@@ -38,7 +38,7 @@ function ResetPasswordPage() {
   return (
     <Container className="small-container">
       <Title title="Reset Password" />
-      <h1 className="my-3">Reset Password</h1>
+      <h1 className="my-3 title">Reset Password</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="password">
           <Form.Label>New Password</Form.Label>

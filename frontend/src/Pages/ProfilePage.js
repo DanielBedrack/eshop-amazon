@@ -218,7 +218,7 @@ const UpdateUserForm = () => {
 
   return (
     <div>
-      <h2>Update User</h2>
+      <h2 className='title'>Update User</h2>
       {message && <div className="alert">{message}</div>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">

@@ -44,6 +44,7 @@ const Product = (props) => {
         )}
       </Card.Body>
     </Card>
+    
   );
 };
 

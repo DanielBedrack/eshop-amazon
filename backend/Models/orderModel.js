@@ -11,7 +11,7 @@ const orderSchema = mongoose.Schema(
         price: { type: Number, require: true },
         product: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: 'product',
+          ref: 'Product',
           require: true,
         },
       },
@@ -37,7 +37,7 @@ const orderSchema = mongoose.Schema(
     totalPrice: { type: Number, require: true },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
+      ref: 'User',
       require: true,
     },
     isPaid: { type: Boolean, require: true },
@@ -46,7 +46,7 @@ const orderSchema = mongoose.Schema(
     deliveredAt: { type: Date },
   },
 
-  { timestamp: true }
+  { timestamps: true }
 );
 const Order = mongoose.model('Order', orderSchema);
 export default Order;

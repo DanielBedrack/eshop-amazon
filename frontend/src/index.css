@@ -41,7 +41,7 @@ main {
   transform: scale(1);
   width: 95%;
   height: 35rem;
-  margin: 1rem 1rem;
+  margin-top: 1rem;
 }
 
 .product-card:hover {
@@ -53,7 +53,6 @@ main {
   max-width: 15rem;
   height: 25rem;
   align-items: center;
-  margin: auto;
   display: flex;
 }
 
@@ -111,3 +110,20 @@ label {
   border: solid 1px black;
   font-weight: 500;
 }
+.title {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+.footer {
+  font-size: 1.5rem;
+    background-color: #000;
+    color: #fff;
+    height: 10vh;
+    margin-top: 5vh;
+    padding-top: 3vh;
+}
+.filters-div{
+  background-color: #fff;
+}
+

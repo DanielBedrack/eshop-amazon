@@ -55,7 +55,7 @@ const SignupPage = () => {
   return (
     <Container className="small-container">
       <Title title="Sign-up" />
-      <h1 className="my-3">Sign Up</h1>
+      <h1 className="my-3 title">Sign Up</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="name">
           <Form.Label>Name</Form.Label>

@@ -122,9 +122,9 @@ const SearchPage = () => {
     <div>
       <Title title="Search Products" />
       <Row>
-        <Col md={3}>
-          <h3>Category</h3>
-          <div>
+        <Col md={3} >
+          <h3 className='my-3 title'>Category</h3>
+          <div >
             <ul>
               <li>
                 <Link
@@ -147,7 +147,7 @@ const SearchPage = () => {
             </ul>
           </div>
           <div>
-            <h3>Price</h3>
+            <h3 className='title'>Price</h3>
             <ul>
               <li>
                 <Link
@@ -170,7 +170,7 @@ const SearchPage = () => {
             </ul>
           </div>
           <div>
-            <h3>Reviews</h3>
+            <h3 className='title'>Reviews</h3>
             <ul>
               {ratings.map((r) => (
                 <li key={r.name}>

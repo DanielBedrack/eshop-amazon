@@ -42,8 +42,8 @@ const CartPage = () => {
 
   return (
     <div>
-      <Title title="Shopping Curt" />
-      <h1>Shopping Cart</h1>
+      <Title title="Shopping Cart" />
+      <h1 className='title'>Shopping Cart</h1>
       <Row>
         <Col md={8}>
           {cartItems.length === 0 ? (
