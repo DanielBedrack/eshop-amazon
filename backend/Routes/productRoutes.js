@@ -5,12 +5,13 @@ import expressAsyncHandler from 'express-async-handler';
 const productRouter = express.Router();
 const PAGE_SIZE = 6;
 
-
+// Get all products
 productRouter.get('/', async (req, res) => {
   const products = await Product.find();
   res.send(products);
-}); 
+});
 
+// Get distinct categories of products
 productRouter.get(
   '/categories',
   expressAsyncHandler(async (req, res) => {
@@ -19,6 +20,7 @@ productRouter.get(
   })
 );
 
+// Search products based on various filters
 productRouter.get(
   '/search',
   expressAsyncHandler(async (req, res) => {
@@ -31,13 +33,12 @@ productRouter.get(
     const order = query.order || '';
     const searchQuery = query.query || '';
 
+    // Prepare filters based on query parameters
     const queryFilter =
       searchQuery && searchQuery !== 'all'
         ? {
             title: {
-              //like 'Contains' in ASP.NET!!!
-              $regex: searchQuery,
-              //Case-insensitive for Mongo
+              $regex: searchQuery, // Case-insensitive search
               $options: 'i',
             },
           }
@@ -59,15 +60,16 @@ productRouter.get(
         : {};
     const sortOrder =
       order === 'lowest'
-        ? { price: 1 } //Ascending order
+        ? { price: 1 } // Ascending order
         : order === 'highest'
-        ? { price: -1 } //Descending order
+        ? { price: -1 } // Descending order
         : order === 'toprated'
         ? { rating: -1 }
         : order === 'newest'
         ? { createdAt: -1 }
         : { _id: -1 };
 
+    // Fetch products based on filters, sorting, pagination
     const products = await Product.find({
       ...queryFilter,
       ...categoryFilter,
@@ -78,12 +80,14 @@ productRouter.get(
       .skip(pageSize * (page - 1))
       .limit(pageSize);
 
+    // Count total number of matching products
     const countProducts = await Product.countDocuments({
       ...queryFilter,
       ...categoryFilter,
       ...priceFilter,
       ...ratingFilter,
     });
+
     res.send({
       products,
       countProducts,
@@ -93,9 +97,9 @@ productRouter.get(
   })
 );
 
-
+// Get product by token
 productRouter.use('/token/:token', async (req, res) => {
-  const product = await Product.findOne({token: req.params.token});
+  const product = await Product.findOne({ token: req.params.token });
   if (product) {
     res.send(product);
   } else {
@@ -103,6 +107,7 @@ productRouter.use('/token/:token', async (req, res) => {
   }
 });
 
+// Get product by ID
 productRouter.use('/:id', async (req, res) => {
   const product = await Product.findById(req.params.id);
   if (product) {
@@ -111,6 +116,5 @@ productRouter.use('/:id', async (req, res) => {
     res.status(404).send({ message: 'Product Not Found' });
   }
 });
-
 
 export default productRouter;

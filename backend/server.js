@@ -13,26 +13,27 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
+app.use(express.json()); // Parse incoming requests with JSON payloads
+app.use(express.urlencoded({ extended: true })); // Parse incoming requests with URL-encoded payloads
 
-app.use('/api/v1/users', userRouter)
-app.use('/api/v1/seed', seedRouter);
-app.use('/api/v1/products', productRouter);
-app.use('/api/v1/orders', orderRouter);
+app.use('/api/v1/users', userRouter); // Mount the user routes
+app.use('/api/v1/seed', seedRouter); // Mount the seed routes
+app.use('/api/v1/products', productRouter); // Mount the product routes
+app.use('/api/v1/orders', orderRouter); // Mount the order routes
+
 app.use((err, req, res, next) => {
-  console.log('error: '+ err.message)
-  res.status(500).send({ message: err.message+ 'from SERVER' })
+  // Error handling middleware
+  console.log('error: ' + err.message);
+  res.status(500).send({ message: err.message + ' from SERVER' });
 });
 
-// MONGO_CONNECTION
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI) // Connect to MongoDB using the provided URI
   .then(() => {
-    console.log('connected to MongoDB');
+    console.log('Connected to MongoDB');
     app.listen(PORT, () => {
-      console.log(`Server is listening on PORT : ${PORT}`);
+      console.log(`Server is listening on PORT: ${PORT}`);
     });
   })
   .catch((error) => {
