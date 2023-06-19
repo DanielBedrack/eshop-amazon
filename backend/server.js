@@ -33,7 +33,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.join('backend', 'build', 'index.html'));
 });
 
-
 // MONGO_CONNECTION
 mongoose
   .connect(process.env.MONGO_URI)
