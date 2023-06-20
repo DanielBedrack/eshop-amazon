@@ -53,6 +53,7 @@ main {
   max-width: 15rem;
   height: 25rem;
   align-items: center;
+  justify-content: center;
   display: flex;
 }
 

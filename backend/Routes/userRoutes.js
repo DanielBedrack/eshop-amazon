@@ -1,7 +1,7 @@
 import express from 'express';
 import expressAsyncHandler from 'express-async-handler';
 import User from '../Models/userModel.js';
-import { genrateToken } from '../utils.js';
+import { genrateToken, isAuth } from '../utils.js';
 import bcrypt from 'bcryptjs';
 
 const userRouter = express.Router();
@@ -62,6 +62,43 @@ userRouter.post(
         .send({
           message: 'Error occurred while creating the user' + error.message,
         });
+    }
+  })
+);
+
+userRouter.put(
+  '/update',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    console.log('before');
+    console.log(req.user._id);
+    const userId = req.user._id;
+    console.log('after');
+
+    // Find the user by ID
+    const user = await User.findById(userId);
+
+    if (user) {
+      // Update the user's details
+      user.name = req.body.name || user.name;
+      user.email = req.body.email || user.email;
+      console.log(req.body.name);
+
+      if (req.body.password) {
+        user.password = bcrypt.hashSync(req.body.password, 10);
+      }
+
+      // Save the updated user to the database
+      const updatedUser = await user.save();
+
+      res.send({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        token: genrateToken(updatedUser),
+      });
+    } else {
+      res.status(404).send({ message: 'User not found' });
     }
   })
 );
