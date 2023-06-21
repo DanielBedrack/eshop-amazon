@@ -22,8 +22,7 @@ export const CallingAddToCartHandler = async (product, cart, ctxDispatch) => {
   });
 };
 
-// handleSort.js
-
+// handleSort
 export const CallingSortHandler = (
   cartItems,
   dragItem,

@@ -12,9 +12,9 @@ const Product = (props) => {
   const { product } = props;
   const { cart } = state;
 
-   const addToCartHandler = () => {
-     CallingAddToCartHandler(product, cart, ctxDispatch);
-   };
+  const addToCartHandler = () => {
+    CallingAddToCartHandler(product, cart, ctxDispatch);
+  };
 
   return (
     <Card className="product-card">
@@ -28,7 +28,7 @@ const Product = (props) => {
         </Link>
       </div>
       <Card.Body>
-        <Link to={`/product/${product.token}`} className="product-title" >
+        <Link to={`/product/${product.token}`} className="product-title">
           <Card.Title>{product.title}</Card.Title>
         </Link>
         <Card.Text>
@@ -38,13 +38,12 @@ const Product = (props) => {
         {product.countInStock > 0 ? (
           <Button onClick={addToCartHandler}>Add to cart</Button>
         ) : (
-          <Button onClick={addToCartHandler} variant="white" disabled={true}>
+          <Button variant="white" disabled={true}>
             Out of Stock
           </Button>
         )}
       </Card.Body>
     </Card>
-    
   );
 };
 

@@ -112,6 +112,9 @@ const SubmitOrderPage = () => {
                 <strong>Country: </strong>
                 {cart.shippingAddress.country}
               </Card.Text>
+              <Link className="link-order" to="/shipping">
+                Edit
+              </Link>
             </Card.Body>
           </Card>
           <Card className="mb-3">
@@ -121,7 +124,9 @@ const SubmitOrderPage = () => {
                 <strong>Method: </strong>
                 {cart.paymentMethod}
               </Card.Text>
-              <Link to="/payment">Edit</Link>
+              <Link className="link-order" to="/payment">
+                Edit
+              </Link>
             </Card.Body>
           </Card>
           <Card className="mb-3">
@@ -137,7 +142,12 @@ const SubmitOrderPage = () => {
                           alt={item.title}
                           className="img-fluid rounded img-thumbnail"
                         />{' '}
-                        <Link to={`/product/${item.token}`}>{item.title}</Link>
+                        <Link
+                          className="link-order"
+                          to={`/product/${item.token}`}
+                        >
+                          {item.title}
+                        </Link>
                       </Col>
                       <Col md={3}>
                         <span>{item.quantity}</span>
@@ -147,7 +157,9 @@ const SubmitOrderPage = () => {
                   </ListGroup.Item>
                 ))}
               </ListGroup>
-              <Link to="/cart">Edit</Link>
+              <Link className="link-order" to="/cart">
+                Edit
+              </Link>
             </Card.Body>
           </Card>
         </Col>
@@ -228,12 +240,13 @@ const SubmitOrderPage = () => {
                         }}
                       />
                     </PayPalScriptProvider>
-                    <Button style={{color: "white",fontSize:"2rem"}}
+                    <Button
+                      style={{ color: 'white', fontSize: '2rem' }}
                       type="button"
                       onClick={submitOrderHandler}
                       disabled={cart.cartItems.length === 0}
-                    ><strong>Submit Free</strong>
-                      
+                    >
+                      <strong>Submit Free</strong>
                     </Button>
                   </div>
                   {loading && <Loading />}

@@ -53,7 +53,6 @@ const formatDate = (date) => {
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: GET_SUCCESS, payload: data });
-        console.log('Data:' + data);
       } catch (err) {
         dispatch({ type: GET_FAIL, payload: getError(err) });
       }

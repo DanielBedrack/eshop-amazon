@@ -34,6 +34,8 @@ productRouter.get(
     const searchQuery = query.query || '';
 
     // Prepare filters based on query parameters
+
+    // Filter by title if searchQuery is provided
     const queryFilter =
       searchQuery && searchQuery !== 'all'
         ? {
@@ -44,11 +46,16 @@ productRouter.get(
           }
         : {};
 
+    // Filter by category if category is provided
     const categoryFilter = category && category !== 'all' ? { category } : {};
+
+    // Filter by rating if rating is provided
     const ratingFilter =
       rating && rating !== 'all'
         ? { 'rating.rate': { $gte: Number(rating) } }
         : {};
+
+    // Filter by price range if price is provided
     const priceFilter =
       price && price !== 'all'
         ? {
@@ -58,6 +65,8 @@ productRouter.get(
             },
           }
         : {};
+
+    // Determine the sorting order based on the 'order' parameter
     const sortOrder =
       order === 'lowest'
         ? { price: 1 } // Ascending order
@@ -88,6 +97,7 @@ productRouter.get(
       ...ratingFilter,
     });
 
+    // Send the response with the fetched products, pagination information, and total count
     res.send({
       products,
       countProducts,
@@ -96,6 +106,7 @@ productRouter.get(
     });
   })
 );
+
 
 // Get product by token
 productRouter.use('/token/:token', async (req, res) => {

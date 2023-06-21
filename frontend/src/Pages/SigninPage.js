@@ -5,9 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getError } from '../Utils';
 import { Store } from '../Context/Store';
-//import Title from '../Components/Shared/Title';
 import { Helmet } from 'react-helmet-async';
-//import SignInForm from '../Components/SignInForm';
 import { toast } from 'react-toastify';
 import { USER_SIGNIN } from '../Actions';
 
@@ -34,7 +32,7 @@ const SigninPage = () => {
       ctxDispatch({ type: USER_SIGNIN, payload: data });
       localStorage.setItem('userInfo', JSON.stringify(data));
 
-      // If user was in diffrend page, after signing in, automatacly redirect to page when he was, or to HomePage
+      // If user was in different page, after signing in, automatacly redirect to page where he was, or to HomePage
       navigate(redirect || '/');
     } catch (err) {
       toast.error(getError(err));

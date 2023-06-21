@@ -16,10 +16,8 @@ import { productReducer } from '../Reducers/productReducer';
 import Title from '../Components/Shared/Title';
 import { GET_REQUEST, GET_SUCCESS, GET_FAIL } from '../Actions';
 
-
 const ProductPage = () => {
   const params = useParams();
-
   const { token } = params;
 
   const [{ loading, error, product }, dispatch] = useReducer(productReducer, {
@@ -28,7 +26,7 @@ const ProductPage = () => {
     product: [],
   });
 
-  // Calling reducer from Store context to add elemnts to cart
+  // Calling reducer from Store context to add elements to cart
   const { state, dispatch: cxtDispatch } = useContext(Store);
   const { cart } = state;
 
@@ -36,20 +34,21 @@ const ProductPage = () => {
     CallingAddToCartHandler(product, cart, cxtDispatch);
   };
 
-    useEffect(() => {
+  useEffect(() => {
     const getProduct = async () => {
-      dispatch({ type: GET_REQUEST });
-      try {
-        const res = await axios.get(`/api/v1/products/token/${token}`);
+      dispatch({ type: GET_REQUEST }); // Dispatches action to set loading state
 
-        dispatch({ type: GET_SUCCESS, payload: res.data });
+      try {
+        const res = await axios.get(`/api/v1/products/token/${token}`); // Sends a GET request to retrieve product data with the given token
+
+        dispatch({ type: GET_SUCCESS, payload: res.data }); // Dispatches action to set the retrieved product data in the state
       } catch (error) {
-        dispatch({ type: GET_FAIL, payload: getError(error) });
+        dispatch({ type: GET_FAIL, payload: getError(error) }); // Dispatches action to set the error message in the state if an error occurs
       }
     };
 
-    getProduct();
-  }, [token]);
+    getProduct(); // Calls the getProduct function when the component mounts or the token changes
+  }, [token]); // The effect depends on the 'token' variable, so it will be triggered when 'token' changes
 
   return (
     <div>
@@ -67,7 +66,7 @@ const ProductPage = () => {
             />
           </Col>
           <Col md={3}>
-            <ListGroup >
+            <ListGroup>
               <ListGroup.Item>
                 <Title title={product.title} />
                 <h1>{product.title}</h1>
