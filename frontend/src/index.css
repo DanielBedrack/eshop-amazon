@@ -118,11 +118,11 @@ label {
 }
 .footer {
   font-size: 1.5rem;
-    background-color: #000;
-    color: #fff;
-    height: 10vh;
-    margin-top: 5vh;
-    padding-top: 3vh;
+  background-color: #000;
+  color: #fff;
+  height: 10vh;
+  margin-top: 5vh;
+  padding-top: 3vh;
 }
 .filters-div{
   background-color: #fff;

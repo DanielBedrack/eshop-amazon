@@ -8,16 +8,16 @@ import { HelmetProvider } from 'react-helmet-async';
 import StoreProvider from './Context/Store';
 import axios from 'axios';
 
-//axios.defaults.baseURL = 'https://e-shop-backend-z3be.onrender.com';
-axios.defaults.baseURL = 'http://localhost:5000';
+axios.defaults.baseURL = 'https://e-shop-backend-z3be.onrender.com';
+//axios.defaults.baseURL = 'http://localhost:5000';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <StoreProvider>
-      <HelmetProvider>
-        <App />
-      </HelmetProvider>
-    </StoreProvider>
+  <StoreProvider>
+    <HelmetProvider>
+      <App />
+    </HelmetProvider>
+  </StoreProvider>
 );
 
 reportWebVitals();
