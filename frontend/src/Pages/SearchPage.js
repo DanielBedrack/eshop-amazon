@@ -130,7 +130,7 @@ const SearchPage = () => {
             <ul>
               <li>
                 <Link
-                  className={'all' === category ? 'text-bold' : ''}
+                  className={'all' === category ? 'text-bold ' : ''} 
                   to={getFilterUrl(search, { category: 'all' })}
                 >
                   Any

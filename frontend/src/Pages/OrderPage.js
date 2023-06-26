@@ -73,7 +73,9 @@ const formatDate = (date) => {
   ) : (
     <div>
       <Title title="Order" />
-      <h1 className="my-3 title">Order: {order._id.substr(order._id.length - 6)}</h1>
+      <h1 className="my-3 title">
+        Order: {order._id.substr(order._id.length - 6)}
+      </h1>
       <Row>
         <Col md={8}>
           <Card className="mb-3">
@@ -121,7 +123,12 @@ const formatDate = (date) => {
                           alt={item.title}
                           className="img-fluid rounded img-thumbnail"
                         ></img>{' '}
-                        <Link to={`/product/${item.token}`}>{item.title}</Link>
+                        <Link
+                          className="link-order"
+                          to={`/product/${item.token}`}
+                        >
+                          {item.title}
+                        </Link>
                       </Col>
                       <Col md={3}>
                         <span>{item.quantity}</span>

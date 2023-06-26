@@ -30,7 +30,7 @@ const Navbar = () => {
             <NavBar.Brand>
               <img
                 src="../../images/logo.png"
-                style={{ width: '180px'}}
+                style={{ width: '180px' }}
                 alt="amazon-logo"
               />
               {!isHomePage && (
@@ -57,7 +57,7 @@ const Navbar = () => {
             </Link>
             {userInfo ? (
               <NavDropdown
-                title={(userInfo.name).split(" ")[0]}
+                title={userInfo.name.split(' ')[0]}
                 id="basic-nav-dropdown"
                 style={{ color: 'white' }}
               >
