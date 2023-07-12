@@ -34,14 +34,15 @@ main {
 }
 
 .product-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 600px;
+  width: 95%;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
   box-shadow: none;
   transform: scale(1);
-  width: 95%;
-  height: 35rem;
-  margin-top: 1rem;
 }
-
 .product-card:hover {
   box-shadow: 10px 10px 10px #813939;
   transform: scale(1.02);
@@ -138,5 +139,19 @@ label {
 
 .text-white {
   color: white;
+}
+
+.auth-container{
+padding: 10px;
+background-color: #93bc33;
+margin-bottom: 15px;
+color: #fff;
+border-radius: 10px;
+}
+
+.auth-container p {
+  margin:0;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 

@@ -51,9 +51,12 @@ const SigninPage = () => {
       <Helmet>
         <title>Sign In</title>
       </Helmet>
-
       <h1 className="my-3 title">Sign In</h1>
-
+      <div className="auth-container">
+        <p>this is a demo app, you may use:</p>
+        <p>email: admin@example.com</p>
+        <p>password: 12345</p>
+      </div>
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="email">
           <Form.Label>Email</Form.Label>
